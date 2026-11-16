@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Конфигуратор каравана FCampers — соберите комплектацию и узнайте цену</title>
+<meta name="description" content="Онлайн-конфигуратор караванов FCampers: три серии, 73 опции, мгновенный расчёт стоимости.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0E2233; --navy2:#12344D; --copper:#0078D7; --copper2:#0066B8;
+  --sand:#F5F7F9; --card:#FFFFFF; --ink:#1B1B1B; --muted:#6B7785;
+  --line:#E3E6E8; --line2:#EDF0F2; --ok:#2F7D5B; --radius:14px;
+  --shadow:0 12px 34px rgba(14,34,51,.10);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);background:var(--sand);line-height:1.45;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+
+/* header */
+.site-head{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
+  color:var(--ink);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{height:32px;width:auto;display:block}
+.head-actions{display:flex;gap:18px;align-items:center}
+.head-phone{font-weight:700;font-size:14px;color:var(--navy);white-space:nowrap}
+.head-phone:hover{color:var(--copper)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;
+  padding:12px 22px;font-weight:700;font-size:14px;transition:.18s;white-space:nowrap}
+.btn.primary{background:var(--copper);color:#fff}
+.btn.primary:hover{background:var(--copper2)}
+.btn.ghost{background:transparent;color:var(--navy);border:1.5px solid rgba(5,49,77,.25)}
+.btn.ghost:hover{border-color:var(--navy)}
+.btn.light{color:#fff;border-color:rgba(255,255,255,.35)}
+.btn.light:hover{border-color:#fff}
+.btn.wide{width:100%}
+.link{background:none;border:0;padding:0;color:var(--muted);font-size:13px;text-decoration:underline;
+  text-underline-offset:3px}
+.link:hover{color:var(--navy)}
+
+/* hero */
+.hero{background:#0E2233 url("assets/hero.jpg") center/cover no-repeat;color:#fff;padding:58px 0 52px;
+  position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(14,34,51,.97) 0%,rgba(14,34,51,.9) 52%,rgba(14,34,51,.72) 100%)}
+.hero .wrap{position:relative;z-index:1}
+.hero-inner{display:grid;grid-template-columns:1.35fr .65fr;gap:44px;align-items:center;position:relative;z-index:1}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#7FC4FF;font-weight:800}
+.hero h1{font-size:clamp(30px,4vw,46px);line-height:1.08;margin:14px 0 16px;letter-spacing:-.02em}
+.hero .lead{font-size:16px;opacity:.85;max-width:560px;margin:0 0 26px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{background:#fff;border-radius:16px;padding:12px;box-shadow:0 26px 60px rgba(0,0,0,.3);color:var(--ink)}
+.hero-photo{width:100%;height:200px;object-fit:contain;background:#F5F7F9;border-radius:10px;margin-bottom:6px}
+.hc-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 6px;border-bottom:1px solid var(--line)}
+.hc-row:last-child{border-bottom:0}
+.hc-row span{color:var(--muted);font-size:13px}
+.hc-row b{font-size:18px;color:var(--navy)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:28px;align-items:start;padding:34px 0 70px}
+.block{margin-bottom:44px;scroll-margin-top:84px}
+.block-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.block-head h2{font-size:24px;margin:0;letter-spacing:-.01em;display:flex;align-items:baseline;gap:10px}
+.block-head h2 span{font-size:13px;color:var(--copper);font-weight:800;letter-spacing:.08em}
+.hint{color:var(--muted);font-size:13px}
+
+/* models */
+.models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.model{background:var(--card);border:2px solid var(--line);border-radius:var(--radius);padding:0;overflow:hidden;
+  text-align:left;display:flex;flex-direction:column;transition:.18s;position:relative}
+.model:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.model.sel{border-color:var(--copper);box-shadow:0 14px 34px rgba(0,120,215,.18)}
+.model.sel:before{content:"Выбрано";position:absolute;top:12px;right:12px;background:var(--copper);color:#fff;
+  font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.06em}
+.model-art{background:#F5F7F9;padding:0;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
+.model-art img{width:100%;height:100%;object-fit:contain;padding:6px}
+.model-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.model-top{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.model h3{margin:0;font-size:19px;white-space:nowrap}
+.tag{font-size:10px;font-weight:700;color:var(--navy);background:#EAF4FD;border-radius:999px;padding:3px 8px;white-space:nowrap}
+.model-feats{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.model-feats span{font-size:12px;color:var(--muted);background:#F2F5F8;border-radius:6px;padding:3px 8px}
+.model-price{margin-top:auto;padding-top:8px}
+.model-price small{display:block;color:var(--muted);font-size:11px;letter-spacing:.04em}
+.model-price b{font-size:21px;color:var(--navy);letter-spacing:-.01em}
+
+/* base table */
+.base-box{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 18px}
+.base-box summary{cursor:pointer;padding:14px 0;font-weight:700;color:var(--navy);list-style:none}
+.base-box summary::-webkit-details-marker{display:none}
+.base-box summary:after{content:"+";float:right;color:var(--copper);font-weight:800}
+.base-box[open] summary:after{content:"–"}
+.table-wrap{overflow:auto;padding-bottom:14px}
+.base-table{width:100%;border-collapse:collapse;font-size:13px}
+.base-table th,.base-table td{padding:8px 10px;border-bottom:1px solid var(--line2);text-align:left}
+.base-table th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.base-table td.c,.base-table th.c{text-align:center;width:64px}
+.base-table tr:last-child td{border-bottom:0}
+
+/* categories */
+.cat-tools{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.cat-tools .btn{padding:8px 16px;font-size:13px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.cat-head{width:100%;display:flex;align-items:center;gap:12px;padding:16px 18px;background:none;border:0;text-align:left}
+.cat-head:hover{background:#FAFBFC}
+.ico{width:34px;height:34px;border-radius:10px;background:#F1F5F8;color:var(--navy);display:grid;place-items:center;flex:none}
+.ico svg{width:19px;height:19px}
+.cat-name{font-weight:800;font-size:15px}
+.cat-cnt{margin-left:auto;background:#F1F5F8;color:var(--navy);font-size:12px;font-weight:800;border-radius:999px;
+  min-width:26px;height:22px;display:grid;place-items:center;padding:0 8px}
+.cat-cnt.on{background:var(--copper);color:#fff}
+.chev{color:var(--muted);transition:.2s;font-size:12px}
+.cat.open .chev{transform:rotate(180deg)}
+.cat-body{display:none;border-top:1px solid var(--line2)}
+.cat.open .cat-body{display:block}
+.opt{display:grid;grid-template-columns:minmax(0,1fr) auto 128px;gap:16px;align-items:center;padding:12px 18px;
+  border-top:1px solid var(--line2)}
+.opt:first-child{border-top:0}
+.opt:hover{background:#FAFBFC}
+.opt .nm{font-weight:600;font-size:14px}
+.opt .note{font-size:12px;color:var(--muted);margin-top:2px}
+.pr{font-weight:800;color:var(--navy);white-space:nowrap;font-size:14px}
+.pr.ask{color:var(--copper2);font-weight:600;font-size:13px}
+.step{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--line);border-radius:999px;
+  overflow:hidden;height:38px;background:#fff}
+.step button{width:38px;height:100%;border:0;background:none;font-size:19px;color:var(--navy);line-height:1}
+.step button:hover{background:#EAF4FD}
+.step button:disabled{opacity:.35;cursor:not-allowed;background:none}
+.step input{width:100%;border:0;text-align:center;font-weight:800;font-size:14px;color:var(--navy);
+  background:none;outline:none;padding:0;min-width:0}
+.step.on{border-color:var(--copper);background:#EAF4FD}
+
+/* summary */
+.side{position:sticky;top:84px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 6px 24px rgba(5,49,77,.05)}
+.summary{padding:20px}
+.sum-title{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.sum-series{display:flex;align-items:baseline;gap:8px;margin:8px 0 14px;font-size:14px}
+.sum-series b{font-size:22px}
+.sum-series span{color:var(--muted);font-size:13px}
+.sum-list{max-height:250px;overflow:auto;margin:0 -6px 12px;padding:0 6px}
+.sum-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line)}
+.sum-item:last-child{border-bottom:0}
+.sum-item .t{flex:1;min-width:0}
+.sum-item .t b{display:block;font-size:13px;font-weight:600;line-height:1.3}
+.sum-item .t span{font-size:11px;color:var(--muted)}
+.sum-item .p{font-size:13px;font-weight:800;white-space:nowrap}
+.sum-item .p.ask{color:var(--copper2);font-weight:600;font-size:12px}
+.sum-item .x{border:0;background:none;color:var(--muted);font-size:16px;line-height:1;padding:0 2px}
+.sum-item .x:hover{color:#B4413C}
+.sum-empty{color:var(--muted);font-size:13px;padding:10px 0 14px}
+.sum-line{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:14px;color:#3B4E59}
+.sum-line b{color:var(--navy)}
+.sum-line.ask{color:var(--copper2);font-size:13px}
+.sum-line i{font-style:normal;color:var(--muted)}
+.sum-total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--navy);
+  margin-top:10px;padding-top:14px;font-size:15px}
+.sum-total b{font-size:28px;color:var(--navy);letter-spacing:-.02em}
+.sum-note{font-size:11px;color:var(--muted);margin:12px 0 14px;line-height:1.4}
+.sum-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+
+/* cta */
+.cta{background:linear-gradient(120deg,#0E2233,#12344D);color:#fff;border-radius:20px;padding:30px;display:grid;
+  grid-template-columns:1.3fr .7fr;gap:24px;align-items:center}
+.cta h3{margin:0 0 8px;font-size:24px}
+.cta p{margin:0;opacity:.8;font-size:14px;max-width:560px}
+.cta .btn{justify-self:end}
+
+/* footer */
+.foot{padding:28px 0 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+.foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(5,30,46,.55);display:flex;align-items:center;
+  justify-content:center;padding:20px}
+.modal[hidden]{display:none}
+.modal-card{background:#fff;border-radius:20px;padding:28px;width:min(460px,100%);position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);max-height:92vh;overflow:auto}
+.modal-x{position:absolute;top:14px;right:16px;border:0;background:none;font-size:26px;line-height:1;color:var(--muted)}
+.modal-card h3{margin:0 0 6px;font-size:22px}
+.muted{color:var(--muted);font-size:14px;margin:0 0 16px}
+.modal-card form{display:grid;gap:12px}
+.modal-card label{display:grid;gap:5px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.modal-card input,.modal-card textarea{border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;
+  font:inherit;font-size:14px;color:var(--ink);outline:none;background:#FCFBF9}
+.modal-card input:focus,.modal-card textarea:focus{border-color:var(--copper);background:#fff}
+.check{display:flex;align-items:flex-start;gap:9px;font-size:12px;font-weight:400;color:var(--muted);line-height:1.35}
+.check input{width:16px;height:16px;margin-top:1px;accent-color:var(--copper)}
+.ok-ico{width:56px;height:56px;border-radius:50%;background:#E7F3EC;color:var(--ok);display:grid;place-items:center;
+  font-size:28px;margin-bottom:14px}
+
+/* mobile bar */
+.mbar{display:none}
+
+/* print */
+.print-only{display:none}
+#printArea{font-size:12px;color:var(--ink)}
+.pr-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);
+  padding-bottom:10px;margin-bottom:18px}
+.pr-logo{height:26px;width:auto}
+.pr-date{font-size:12px;color:var(--muted)}
+#printArea h1{font-size:20px;margin:0 0 14px;letter-spacing:-.01em}
+.pr-client{display:grid;gap:4px;margin-bottom:14px;font-size:13px}
+.pr-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:12px}
+.pr-table th,.pr-table td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+.pr-table th{background:var(--navy);color:#fff;font-weight:700;font-size:11px}
+.pr-table .c{text-align:center}
+.pr-table .r{text-align:right;white-space:nowrap}
+.pr-table tfoot td{border-top:2px solid var(--navy);font-size:14px}
+.pr-base td{background:var(--sand)}
+.pr-note{font-size:11px;color:var(--muted);margin:8px 0}
+.pr-foot{margin-top:18px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;
+  color:var(--navy);font-weight:700}
+@media print{
+  body{background:#fff}
+  .site-head,.hero,.layout,.mbar,.modal,.foot{display:none!important}
+  .print-only{display:block!important}
+  @page{size:A4;margin:16mm}
+}
+
+@media (max-width:980px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .content{min-width:0}
+  .models{grid-template-columns:minmax(0,1fr)}
+  .hero-inner{grid-template-columns:minmax(0,1fr)}
+  .hero-card{display:none}
+  .side{position:static;order:2}
+  .cta{grid-template-columns:1fr}
+  .cta .btn{justify-self:start}
+  .opt{grid-template-columns:minmax(0,1fr) 118px;grid-template-areas:"info price" "step step";row-gap:10px}
+  .opt-info{grid-area:info}
+  .pr{grid-area:price;text-align:right}
+  .step{grid-area:step}
+  body{padding-bottom:76px}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:70;background:#fff;border-top:1px solid var(--line);
+    padding:10px 16px;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 -8px 24px rgba(5,49,77,.10)}
+  .mbar-sum span{display:block;font-size:11px;color:var(--muted)}
+  .mbar-sum b{font-size:19px;color:var(--navy)}
+  .mbar .btn{padding:11px 22px}
+  .site-head .head-actions .btn.ghost{display:none}
+}
+
+@media (max-width:680px){
+  .head-phone{display:none}
+  .brand-logo{height:26px}
+  .site-head .wrap{height:62px;padding:0 14px}
+  .head-actions{gap:10px}
+  .head-actions .btn{padding:10px 16px;font-size:13px}
+  .wrap{padding:0 14px}
+  .hero{padding:34px 0 30px}
+  .hero h1{font-size:26px;line-height:1.14;letter-spacing:-.01em;margin:10px 0 12px}
+  .hero .lead{font-size:14px;margin-bottom:20px}
+  .eyebrow{font-size:11px;letter-spacing:.14em}
+  .hero-actions .btn{padding:11px 16px;font-size:13px}
+  .block-head h2{font-size:20px}
+  .model h3{font-size:17px}
+  .model-price b{font-size:19px}
+  .cat-head{padding:14px}
+  .opt{padding:12px 14px}
+  .sum-total b{font-size:24px}
+  .cta{padding:22px}
+  .cta h3{font-size:20px}
+  .modal-card{padding:22px}
+}
+@media (max-width:380px){
+  .hero h1{font-size:23px}
+  .model-top{flex-wrap:wrap}
+  .mbar .btn{padding:10px 16px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="FCampers — на главную">
+      <img src="assets/logo.png" alt="FCampers" class="brand-logo">
+    </a>
+    <div class="head-actions">
+      <a class="head-phone" href="tel:+74996382405">+7 (499) 638-24-05</a>
+      <button class="btn primary" data-open>Оставить заявку</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Караваны FCampers · 2026</div>
+      <h1>Соберите свой караван<br>и узнайте цену сразу</h1>
+      <p class="lead">Три серии и более 70 опций. Выбирайте комплектацию — стоимость пересчитывается мгновенно.
+        Это предварительная оценка, а не публичная оферта.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#models">Выбрать серию</a>
+        <a class="btn ghost light" href="#options">Сразу к опциям</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="assets/model-400.jpg" alt="Караван FCampers" class="hero-photo">
+      <div class="hc-row"><span>Серий</span><b>3</b></div>
+      <div class="hc-row"><span>Опций в каталоге</span><b id="heroOpts">73</b></div>
+      <div class="hc-row"><span>Базовая цена</span><b>от 1,75 млн ₽</b></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap layout">
+  <div class="content">
+    <section class="block" id="models">
+      <div class="block-head">
+        <h2><span>01</span> Выберите серию</h2>
+        <div class="hint">Базовая цена уже включает оснащение из списка ниже</div>
+      </div>
+      <div class="models" id="modelCards"></div>
+      <details class="base-box">
+        <summary>Что входит в базовую комплектацию</summary>
+        <div class="table-wrap"><table class="base-table" id="baseTable"></table></div>
+      </details>
+    </section>
+
+    <section class="block" id="options">
+      <div class="block-head">
+        <h2><span>02</span> Добавьте опции</h2>
+        <div class="hint">Укажите количество: 0 — опция не нужна</div>
+      </div>
+      <div class="cat-tools">
+        <button class="btn ghost" id="expandAll">Развернуть все</button>
+        <button class="btn ghost" id="collapseAll">Свернуть</button>
+        <button class="btn ghost" id="clearOpts">Сбросить опции</button>
+      </div>
+      <div id="categories"></div>
+    </section>
+
+    <section class="block" id="request">
+      <div class="cta">
+        <div>
+          <h3>Готовы обсудить комплектацию?</h3>
+          <p>Оставьте заявку — пришлём коммерческое предложение, поможем с выбором опций и ответим на вопросы
+            по срокам и производству.</p>
+        </div>
+        <button class="btn primary" data-open>Оформить заявку</button>
+      </div>
+    </section>
+  </div>
+
+  <aside class="side">
+    <div class="summary card" id="summary">
+      <div class="sum-title">Ваша комплектация</div>
+      <div class="sum-series"><span>Серия</span><b id="sumSeries">400</b><span id="sumModule">модуль 400 мм</span></div>
+      <div class="sum-list" id="sumList"></div>
+      <div class="sum-line"><span>Базовая цена</span><b id="sumBase">—</b></div>
+      <div class="sum-line"><span>Опции <i id="sumCount">0</i></span><b id="sumOpts">—</b></div>
+      <div class="sum-line ask" id="sumAskRow" hidden><span>По запросу</span><b id="sumAsk">—</b></div>
+      <div class="sum-total"><span>Итого</span><b id="sumTotal">—</b></div>
+      <div class="sum-note">Предварительная оценка. Итоговая стоимость фиксируется после согласования
+        комплектации и подписания договора.</div>
+      <button class="btn primary wide" data-open>Оформить заявку</button>
+      <div class="sum-links">
+        <button class="link" id="btnPrint">Скачать КП</button>
+        <button class="link" id="btnShare">Поделиться</button>
+        <button class="link" id="btnReset">Сбросить всё</button>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© FCampers · familycampers.ru</span>
+    <span>Цены по прайсу «Оптима, все серии» от 26.10.2026 · не является публичной офертой</span>
+  </div>
+</footer>
+
+<div class="mbar">
+  <div class="mbar-sum"><span>Итого</span><b id="mTotal">—</b></div>
+  <button class="btn primary" data-open>Заявка</button>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card">
+    <button class="modal-x" id="modalX" aria-label="Закрыть">×</button>
+    <div id="formWrap">
+      <h3>Заявка на расчёт</h3>
+      <p class="muted">Пришлём коммерческое предложение и поможем с комплектацией.</p>
+      <form id="leadForm">
+        <label>Имя<input name="name" required placeholder="Как к вам обращаться"></label>
+        <label>Телефон<input name="phone" required placeholder="+7 (___) ___-__-__" inputmode="tel"></label>
+        <label>Комментарий<textarea name="comment" rows="2" placeholder="Пожелания по комплектации"></textarea></label>
+        <label class="check"><input type="checkbox" name="consent" required> Я даю <a href="https://familycampers.ru/soglasie/" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="https://familycampers.ru/politika_pers_danih/" target="_blank" rel="noopener">политику обработки ПДн</a></label>
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+        <button class="btn primary wide" type="submit">Отправить заявку</button>
+      </form>
+    </div>
+    <div id="okWrap" hidden>
+      <div class="ok-ico">✓</div>
+      <h3 id="okTitle">Заявка сформирована</h3>
+      <p class="muted" id="okNote">Скачайте коммерческое предложение или отправьте его менеджеру.</p>
+      <button class="btn primary wide" id="okPrint">Скачать КП</button>
+      <a class="btn ghost wide" id="okMail" href="#" style="margin-top:10px">Отправить на почту</a>
+    </div>
+  </div>
+</div>
+
+<div id="printArea" class="print-only"></div>
+
+<script>
+const DATA = {"series": [{"code": "300", "module": 300, "price": 1750000, "features": ["Модуль 300 мм", "2 аутригера", "1 боковое окно", "Холодильник 50 л"], "photo": "assets/model-300.jpg"}, {"code": "400", "module": 400, "price": 1950000, "features": ["Модуль 400 мм", "2 аутригера", "2 боковых окна", "Холодильник 65 л"], "photo": "assets/model-400.jpg"}, {"code": "500", "module": 500, "price": 2950000, "features": ["Модуль 500 мм", "4 аутригера", "2 боковых окна", "Холодильник 65 л"], "photo": "assets/model-500.jpg"}], "categories": [{"name": "Внешнее оборудование", "icon": "car", "options": [{"id": "o1", "name": "Толщина стены 50 мм", "unit": "шт", "prices": [144000, 144000, 144000], "note": ""}, {"id": "o2", "name": "Изменение длины, шаг 200 мм", "unit": "шаг", "prices": [35000, 35000, 35000], "note": ""}, {"id": "o3", "name": "Независимая подвеска на Ш-образных рычагах", "unit": "компл", "prices": [244000, 342000, 640000], "note": ""}, {"id": "o4", "name": "Пневмоподвеска, 1 ось / 2 подушки", "unit": "компл", "prices": [140000, 140000, 140000], "note": ""}, {"id": "o5", "name": "Пневмоподвеска, 2 оси / 4 подушки", "unit": "компл", "prices": [226500, 226500, 226500], "note": ""}, {"id": "o6", "name": "Колёса R16C 195/70, штампованные диски", "unit": "компл", "prices": [32000, 0, 0], "note": "для серии 300; для 400/500 — по запросу"}, {"id": "o7", "name": "Американский квадрат сзади, РДПП шасси", "unit": "шт", "prices": [38000, 38000, 38000], "note": ""}, {"id": "o8", "name": "Американский квадрат сзади, Ш-образные рычаги", "unit": "шт", "prices": [24000, 24000, 24000], "note": ""}, {"id": "o9", "name": "Боковые упоры-аутригеры, +2 шт", "unit": "шт", "prices": [22000, 22000, 22000], "note": ""}, {"id": "o10", "name": "Грузовой люк 600×320", "unit": "шт", "prices": [24000, 24000, 24000], "note": ""}, {"id": "o11", "name": "Ступень механическая", "unit": "шт", "prices": [28000, 28000, 28000], "note": ""}, {"id": "o12", "name": "Кофр передний сэндвич для 2 угловых подвесок", "unit": "шт", "prices": [48000, 48000, 48000], "note": ""}]}, {"name": "Окна и люки", "icon": "window", "options": [{"id": "o13", "name": "Лобовое окно 1100×500", "unit": "шт", "max": 1, "prices": [62000, 62000, 62000], "note": ""}, {"id": "o14", "name": "Боковое / заднее окно 900×450", "unit": "шт", "prices": [45000, 45000, 45000], "note": ""}, {"id": "o15", "name": "Заднее окно / окно СУ 500×350", "unit": "шт", "max": 1, "prices": [35000, 35000, 35000], "note": ""}, {"id": "o16", "name": "Окно кухонной зоны 500×350", "unit": "шт", "prices": [37000, 37000, 37000], "note": ""}, {"id": "o17", "name": "Люк 400×400 накрышный, подсветка, москитная сетка", "unit": "шт", "prices": [26000, 26000, 26000], "note": ""}, {"id": "o18", "name": "Люк 700×500 накрышный, подсветка, москитная сетка", "unit": "шт", "prices": [59000, 59000, 59000], "note": ""}, {"id": "o19", "name": "Дверь с окном и москитной сеткой", "unit": "шт", "prices": [88000, 88000, 88000], "note": ""}, {"id": "o20", "name": "Москитная сетка сдвижная на дверь", "unit": "шт", "prices": [24000, 24000, 24000], "note": ""}]}, {"name": "Маркизы и кондиционеры", "icon": "awning", "options": [{"id": "o21", "name": "Маркиза кассетная, встроенные упоры", "unit": "шт", "prices": [156000, 176000, 0], "note": "500 — по запросу"}, {"id": "o22", "name": "Электропривод маркизы", "unit": "шт", "prices": [60000, 60000, 60000], "note": ""}, {"id": "o23", "name": "Кондиционер накрышный 1,5 кВт, 12 В", "unit": "шт", "prices": [68000, 68000, 68000], "note": ""}, {"id": "o24", "name": "Кондиционер инверторный накрышный 2,5 кВт, 12 В", "unit": "шт", "prices": [84000, 84000, 84000], "note": ""}]}, {"name": "Навесное оборудование", "icon": "tools", "options": [{"id": "o25", "name": "Столик уличный белый 800×450", "unit": "шт", "prices": [30800, 30800, 30800], "note": ""}, {"id": "o26", "name": "Розетка газовая под быстросъём", "unit": "шт", "prices": [22000, 22000, 22000], "note": ""}, {"id": "o27", "name": "Душ наружный", "unit": "шт", "prices": [14500, 14500, 14500], "note": ""}, {"id": "o28", "name": "Велобагажник на 2 велосипеда", "unit": "шт", "prices": [57200, 57200, 57200], "note": ""}, {"id": "o29", "name": "Ликпаз, 1 п.м", "unit": "п.м", "prices": [7000, 7000, 7000], "note": ""}]}, {"name": "Электрооборудование", "icon": "bolt", "options": [{"id": "o30", "name": "Солнечная панель 440–500 Вт с контроллером", "unit": "компл", "prices": [55000, 55000, 55000], "note": ""}, {"id": "o31", "name": "АКБ LiFePO4 280–310 Ач", "unit": "шт", "prices": [78000, 78000, 78000], "note": ""}, {"id": "o32", "name": "АКБ LiFePO4 150 Ач", "unit": "шт", "prices": [45000, 45000, 45000], "note": ""}, {"id": "o33", "name": "Внешняя розетка 220 В + 12 В + USB", "unit": "шт", "prices": [9200, 9200, 9200], "note": ""}, {"id": "o34", "name": "Задняя камера", "unit": "шт", "prices": [32000, 32000, 32000], "note": ""}, {"id": "o35", "name": "Внешняя газовая розетка", "unit": "шт", "prices": [7500, 7500, 7500], "note": ""}, {"id": "o36", "name": "Инвертор 1000 Вт (номинал 500 Вт)", "unit": "шт", "prices": [19000, 19000, 19000], "note": ""}, {"id": "o37", "name": "Инвертор 3000 Вт (номинал 1500 Вт)", "unit": "шт", "prices": [26000, 26000, 26000], "note": ""}, {"id": "o38", "name": "Инвертор 6000 Вт (номинал 3000 Вт)", "unit": "шт", "prices": [37000, 37000, 37000], "note": ""}]}, {"name": "Кухонная зона", "icon": "kitchen", "options": [{"id": "o39", "name": "Газовая комфорка, 1 шт", "unit": "шт", "prices": [24000, 24000, 24000], "note": ""}, {"id": "o40", "name": "Индукционная комфорка, 1 шт", "unit": "шт", "prices": [24000, 24000, 24000], "note": ""}, {"id": "o41", "name": "Две газовые комфорки", "unit": "компл", "prices": [32000, 32000, 32000], "note": ""}, {"id": "o42", "name": "Раковина с крышкой", "unit": "шт", "prices": [24000, 24000, 24000], "note": ""}, {"id": "o43", "name": "Вытяжка кухонная", "unit": "шт", "prices": [24200, 24200, 24200], "note": ""}, {"id": "o44", "name": "СВЧ-печь", "unit": "шт", "prices": [25000, 25000, 25000], "note": ""}, {"id": "o45", "name": "Стиральная машина", "unit": "шт", "prices": [55000, 55000, 55000], "note": ""}, {"id": "o46", "name": "Посудомоечная машина", "unit": "шт", "prices": [45000, 45000, 45000], "note": ""}]}, {"name": "Отопление, вода, газ", "icon": "drop", "options": [{"id": "o47", "name": "Комби-отопитель дизель + 220 В (отопление + бойлер)", "unit": "компл", "prices": [228000, 228000, 228000], "note": ""}, {"id": "o48", "name": "Бак дизель 22 л с датчиком", "unit": "шт", "prices": [38000, 38000, 38000], "note": ""}, {"id": "o49", "name": "Чехол для насоса отопителя (тихий)", "unit": "шт", "prices": [5600, 5600, 5600], "note": ""}, {"id": "o50", "name": "Насос 18,2 л/мин для забора воды снаружи", "unit": "шт", "prices": [28000, 28000, 28000], "note": ""}, {"id": "o51", "name": "Гидроаккумулятор 3 л", "unit": "шт", "prices": [16000, 16000, 16000], "note": ""}, {"id": "o52", "name": "Датчик уровня воды в баке", "unit": "шт", "prices": [15000, 15000, 15000], "note": ""}, {"id": "o53", "name": "Баллон композит 12 л", "unit": "шт", "prices": [16000, 16000, 16000], "note": ""}, {"id": "o54", "name": "Крепление баллона", "unit": "шт", "prices": [0, 0, 0], "note": "цена по запросу"}]}, {"name": "Санузел", "icon": "shower", "options": [{"id": "o55", "name": "Раковина откидная", "unit": "шт", "prices": [36000, 36000, 36000], "note": ""}, {"id": "o56", "name": "Раковина треугольная угловая", "unit": "шт", "prices": [36000, 36000, 36000], "note": ""}, {"id": "o57", "name": "Шкафчик на стену, пластик", "unit": "шт", "prices": [12000, 12000, 12000], "note": ""}, {"id": "o58", "name": "Раковина базовая прямоугольная", "unit": "шт", "prices": [18000, 18000, 18000], "note": ""}, {"id": "o59", "name": "Унитаз кассетный", "unit": "шт", "prices": [68000, 68000, 68000], "note": ""}, {"id": "o60", "name": "Унитаз портативный", "unit": "шт", "prices": [22000, 22000, 22000], "note": ""}]}, {"name": "Свет, розетки, ТВ, интернет", "icon": "lamp", "options": [{"id": "o61", "name": "Точечный светильник", "unit": "шт", "prices": [3500, 3500, 3500], "note": ""}, {"id": "o62", "name": "Лампа диодная круглая", "unit": "шт", "prices": [1800, 1800, 1800], "note": ""}, {"id": "o63", "name": "Розетка 220 В", "unit": "шт", "prices": [1800, 1800, 1800], "note": ""}, {"id": "o64", "name": "Розетка USB", "unit": "шт", "prices": [1500, 1500, 1500], "note": ""}, {"id": "o65", "name": "Розетка 12 В", "unit": "шт", "prices": [1500, 1500, 1500], "note": ""}, {"id": "o66", "name": "ТВ 24 дюйма, 12 В", "unit": "шт", "prices": [32000, 32000, 32000], "note": ""}, {"id": "o67", "name": "Крепление ТВ", "unit": "шт", "prices": [12000, 12000, 12000], "note": ""}, {"id": "o68", "name": "Роутер Wi-Fi 12 В", "unit": "шт", "prices": [6500, 6500, 6500], "note": ""}]}, {"name": "Напольное покрытие и шторки", "icon": "floor", "options": [{"id": "o69", "name": "Ева", "unit": "компл", "prices": [16000, 16000, 16000], "note": ""}, {"id": "o70", "name": "Кварцвинил", "unit": "компл", "prices": [56000, 56000, 56000], "note": ""}, {"id": "o71", "name": "Линолеум", "unit": "компл", "prices": [36000, 36000, 36000], "note": ""}, {"id": "o72", "name": "Шторка столовая группа", "unit": "шт", "prices": [14000, 14000, 14000], "note": ""}, {"id": "o73", "name": "Шторка детская зона", "unit": "шт", "prices": [14000, 14000, 14000], "note": ""}]}], "base": [{"name": "Шасси с горячим цинкованием", "q": [1, 1, 1], "note": "общая база"}, {"name": "Толщина стен 30 мм", "q": [1, 1, 1], "note": ""}, {"name": "Независимая рычажно-демпферная подвеска на полимерных элементах", "q": [1, 1, 1], "note": ""}, {"name": "Колёса R13C 185/70 (4×98), штампованные диски", "q": [1, 1, 1], "note": ""}, {"name": "Боковые упоры-аутригеры (опорные лапы)", "q": [2, 2, 4], "note": "шт"}, {"name": "Боковое окно 900×450", "q": [1, 2, 2], "note": "шт"}, {"name": "Люк 400×400, штора блэк-аут, москитная сетка", "q": [1, 1, 1], "note": "потолок столовой группы"}, {"name": "Люк 280×280, вентилятор, свет, москитная сетка", "q": [1, 1, 1], "note": "санузел"}, {"name": "Дверь сэндвич 30 мм, без окна", "q": [1, 1, 1], "note": ""}, {"name": "Внешняя розетка 220 В: вход, зарядка каравана", "q": [1, 1, 1], "note": ""}, {"name": "Вход для заправки воды", "q": [1, 1, 1], "note": ""}, {"name": "Подготовка под подключение солнечной панели", "q": [1, 1, 1], "note": ""}, {"name": "АКБ 150 Ач Pb", "q": [1, 1, 1], "note": ""}, {"name": "Зарядное устройство 20 А", "q": [1, 1, 1], "note": ""}, {"name": "Холодильник 50 л", "q": [1, 0, 0], "note": "только 300"}, {"name": "Холодильник 65 л", "q": [0, 1, 1], "note": "400 и 500"}, {"name": "Автономный дизельный отопитель 5 кВт", "q": [1, 1, 1], "note": ""}, {"name": "Бак дизель 15 л, встроен в шасси", "q": [1, 1, 1], "note": ""}, {"name": "Бойлер 12/220 В, 10 л", "q": [1, 1, 1], "note": ""}, {"name": "Бак для воды 65 л", "q": [1, 1, 1], "note": ""}, {"name": "Насос 11,7 л/мин с реле давления", "q": [1, 1, 1], "note": ""}, {"name": "Дверь санузла, глухая", "q": [1, 1, 1], "note": ""}, {"name": "Душевой поддон", "q": [1, 1, 1], "note": ""}, {"name": "Розетка 220 В", "q": [1, 1, 1], "note": ""}, {"name": "Розетка 12 В", "q": [1, 1, 1], "note": ""}, {"name": "Комбинация мебели: столовая группа, шкаф, кухня", "q": [1, 1, 1], "note": "цвет — по выбору"}]};
+const CONTACT_PHONE = "+7 (499) 638-24-05";
+const CONTACT_EMAIL = "familycampers@ya.ru";
+const STORE_KEY = "fcampers-config-v1";
+
+/* Отправка заявок в Bitrix24 CRM (российский дата-центр Bitrix24).
+   Вебхук создан с правом только "CRM (crm)". Ключ публичный — от спама защищают
+   honeypot-поле и проверка телефона; при злоупотреблении вебхук можно
+   перегенерировать в Bitrix24 и обновить здесь. */
+const LEAD_ENDPOINT = "https://familycampers.bitrix24.ru/rest/12/brdaq9h353en619p/";
+
+const fmt = n => Number(n).toLocaleString("ru-RU") + " ₽";
+const byId = id => document.getElementById(id);
+const optById = {};
+DATA.categories.forEach(c => c.options.forEach(o => { optById[o.id] = o; }));
+
+let state = { series: "400", qty: {}, client: { name: "", phone: "", comment: "" }, open: {} };
+
+function seriesInfo(code) { return DATA.series.find(s => s.code === code) || DATA.series[0]; }
+function si() { return DATA.series.findIndex(s => s.code === state.series); }
+function priceOf(opt) { return opt.prices[si()] || 0; }
+function isAsk(opt) { return priceOf(opt) === 0; }
+
+function save() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify({ s: state.series, q: state.qty })); } catch (e) {}
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (d && d.s) { state.series = d.s; state.qty = d.q || {}; }
+  } catch (e) {}
+}
+function loadHash() {
+  if (!location.hash || location.hash.length < 3) return false;
+  try {
+    const d = JSON.parse(decodeURIComponent(atob(location.hash.slice(1))));
+    if (d.s) { state.series = d.s; state.qty = d.q || {}; return true; }
+  } catch (e) {}
+  return false;
+}
+
+/* ---------- icons ---------- */
+const ICONS = {
+  car: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 15v-3l2-4h14l2 4v3"/><path d="M3 15h18"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg>',
+  window: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 4v16M4 12h16"/></svg>',
+  awning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8h18L12 3 3 8z"/><path d="M5 8v9M19 8v9M5 17h14"/></svg>',
+  tools: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M14 6l4 4-8 8-3 1 1-3 6-6z"/><path d="M13 7l4 4"/></svg>',
+  bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M13 3L5 14h6l-1 7 8-11h-6l1-7z"/></svg>',
+  kitchen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="8" width="14" height="9" rx="2"/><path d="M8 8V6M16 8V6M4 12.5h16"/></svg>',
+  drop: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3s6 6.5 6 10.5A6 6 0 016 13.5C6 9.5 12 3 12 3z"/></svg>',
+  shower: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 20V9a4 4 0 014-4h7"/><path d="M14 2.5l3 2.5-3 2.5"/><circle cx="8" cy="14" r="1"/><circle cx="11" cy="17" r="1"/></svg>',
+  lamp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="10" r="3.6"/><path d="M12 2.5v1.8M12 15.7v1.8M3.5 10H2M22 10h-1.5M6 4l1.3 1.3M18 4l-1.3 1.3"/></svg>',
+  floor: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18M3 12h18M3 18h18M9 6v6M15 12v6"/></svg>'
+};
+
+/* ---------- render ---------- */
+function renderModels() {
+  byId("modelCards").innerHTML = DATA.series.map(s => `
+    <button class="model ${s.code === state.series ? "sel" : ""}" data-series="${s.code}" aria-pressed="${s.code === state.series}">
+      <div class="model-art"><img src="${s.photo}" alt="Караван FCampers, серия ${s.code}"></div>
+      <div class="model-body">
+        <div class="model-top"><h3>Серия ${s.code}</h3><span class="tag">модуль ${s.module} мм</span></div>
+        <div class="model-feats">${s.features.map(f => `<span>${f}</span>`).join("")}</div>
+        <div class="model-price"><small>базовая цена</small><b>${fmt(s.price)}</b></div>
+      </div>
+    </button>`).join("");
+}
+
+function renderBase() {
+  const head = `<thead><tr><th>Оборудование</th><th class="c">300</th><th class="c">400</th><th class="c">500</th></tr></thead>`;
+  const rows = DATA.base.map(r => {
+    const cells = r.q.map(q => `<td class="c">${q ? q : "—"}</td>`).join("");
+    return `<tr><td>${r.name}${r.note ? `<div class="note" style="font-size:11px;color:#6B7785">${r.note}</div>` : ""}</td>${cells}</tr>`;
+  }).join("");
+  byId("baseTable").innerHTML = head + `<tbody>${rows}</tbody>`;
+}
+
+function rowHTML(o) {
+  const p = priceOf(o);
+  const q = state.qty[o.id] || 0;
+  return `<div class="opt" data-id="${o.id}">
+    <div class="opt-info">
+      <div class="nm">${o.name}</div>
+      ${o.note ? `<div class="note">${o.note}</div>` : ""}
+    </div>
+    <div class="pr ${p ? "" : "ask"}" data-price>${p ? fmt(p) : "по запросу"}</div>
+    <div class="step ${q ? "on" : ""}">
+      <button type="button" data-dec aria-label="Уменьшить">−</button>
+      <input data-q value="${q}" inputmode="numeric" aria-label="Количество">
+      <button type="button" data-inc aria-label="Увеличить"${o.max && q >= o.max ? " disabled" : ""}>+</button>
+    </div>
+  </div>`;
+}
+
+function renderCategories() {
+  byId("categories").innerHTML = DATA.categories.map((c, ci) => `
+    <section class="cat ${ci === 0 ? "open" : ""}" data-cat="${ci}">
+      <button class="cat-head" data-toggle>
+        <span class="ico">${ICONS[c.icon] || ICONS.bolt}</span>
+        <span class="cat-name">${c.name}</span>
+        <span class="cat-cnt" data-catcnt="${ci}">0</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="cat-body">${c.options.map(rowHTML).join("")}</div>
+    </section>`).join("");
+}
+
+function selectedItems() {
+  const out = [];
+  DATA.categories.forEach(c => c.options.forEach(o => {
+    const q = state.qty[o.id] || 0;
+    if (q > 0) out.push({ opt: o, q, price: priceOf(o) });
+  }));
+  return out;
+}
+
+function calc() {
+  const s = seriesInfo(state.series);
+  const items = selectedItems();
+  let optSum = 0, units = 0, ask = 0;
+  items.forEach(i => { units += i.q; if (i.price) optSum += i.price * i.q; else ask += 1; });
+  return { base: s.price, optSum, units, positions: items.length, ask, total: s.price + optSum, items };
+}
+
+function refreshPrices() {
+  document.querySelectorAll(".opt").forEach(row => {
+    const o = optById[row.dataset.id];
+    const p = priceOf(o);
+    const pr = row.querySelector("[data-price]");
+    pr.textContent = p ? fmt(p) : "по запросу";
+    pr.classList.toggle("ask", !p);
+  });
+}
+
+function updateSummary() {
+  const c = calc();
+  const s = seriesInfo(state.series);
+  byId("sumSeries").textContent = s.code;
+  byId("sumModule").textContent = "модуль " + s.module + " мм";
+  byId("sumBase").textContent = fmt(c.base);
+  byId("sumOpts").textContent = fmt(c.optSum);
+  byId("sumCount").textContent = c.positions;
+  byId("sumTotal").textContent = fmt(c.total);
+  byId("mTotal").textContent = fmt(c.total);
+
+  const askRow = byId("sumAskRow");
+  if (c.ask) { askRow.hidden = false; byId("sumAsk").textContent = c.ask + " поз."; }
+  else { askRow.hidden = true; }
+
+  const list = byId("sumList");
+  if (!c.items.length) {
+    list.innerHTML = `<div class="sum-empty">Пока ничего не выбрано — добавьте опции ниже.</div>`;
+  } else {
+    list.innerHTML = c.items.map(i => `
+      <div class="sum-item" data-rm="${i.opt.id}">
+        <div class="t"><b>${i.opt.name}</b><span>${i.q} ${i.opt.unit}</span></div>
+        <div class="p ${i.price ? "" : "ask"}">${i.price ? fmt(i.price * i.q) : "по запросу"}</div>
+        <button class="x" data-rm-btn title="Убрать">×</button>
+      </div>`).join("");
+  }
+
+  document.querySelectorAll("[data-catcnt]").forEach(el => {
+    const ci = +el.dataset.catcnt;
+    const n = DATA.categories[ci].options.reduce((a, o) => a + (state.qty[o.id] || 0), 0);
+    el.textContent = n;
+    el.classList.toggle("on", n > 0);
+  });
+}
+
+function renderAll() {
+  renderModels();
+  renderCategories();
+  refreshPrices();
+  updateSummary();
+}
+
+/* ---------- interactions ---------- */
+function setQty(id, val) {
+  const opt = optById[id];
+  const max = (opt && opt.max) ? opt.max : 99;
+  const v = Math.max(0, Math.min(max, parseInt(val, 10) || 0));
+  state.qty[id] = v;
+  const row = document.querySelector(`.opt[data-id="${id}"]`);
+  if (row) {
+    row.querySelector("[data-q]").value = v;
+    row.querySelector(".step").classList.toggle("on", v > 0);
+    const incBtn = row.querySelector("[data-inc]");
+    if (incBtn) incBtn.disabled = (max && v >= max);
+  }
+  save();
+  updateSummary();
+}
+
+document.addEventListener("click", e => {
+  const model = e.target.closest("[data-series]");
+  if (model) {
+    state.series = model.dataset.series;
+    document.querySelectorAll(".model").forEach(m => {
+      const on = m.dataset.series === state.series;
+      m.classList.toggle("sel", on);
+      m.setAttribute("aria-pressed", on);
+    });
+    refreshPrices();
+    updateSummary();
+    save();
+    return;
+  }
+
+  const toggle = e.target.closest("[data-toggle]");
+  if (toggle) { toggle.closest(".cat").classList.toggle("open"); return; }
+
+  const inc = e.target.closest("[data-inc]");
+  if (inc) {
+    const id = inc.closest(".opt").dataset.id;
+    setQty(id, (state.qty[id] || 0) + 1);
+    return;
+  }
+  const dec = e.target.closest("[data-dec]");
+  if (dec) {
+    const id = dec.closest(".opt").dataset.id;
+    setQty(id, (state.qty[id] || 0) - 1);
+    return;
+  }
+
+  const rm = e.target.closest("[data-rm-btn]");
+  if (rm) { setQty(rm.closest("[data-rm]").dataset.rm, 0); return; }
+
+  if (e.target.closest("[data-open]")) { openModal(); }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("[data-q]")) {
+    const id = e.target.closest(".opt").dataset.id;
+    setQty(id, e.target.value);
+  }
+});
+
+byId("expandAll").addEventListener("click", () => document.querySelectorAll(".cat").forEach(c => c.classList.add("open")));
+byId("collapseAll").addEventListener("click", () => document.querySelectorAll(".cat").forEach(c => c.classList.remove("open")));
+byId("clearOpts").addEventListener("click", () => {
+  Object.keys(state.qty).forEach(k => state.qty[k] = 0);
+  document.querySelectorAll(".opt").forEach(row => {
+    row.querySelector("[data-q]").value = 0;
+    row.querySelector(".step").classList.remove("on");
+  });
+  save(); updateSummary();
+});
+
+byId("btnReset").addEventListener("click", () => {
+  if (!confirm("Сбросить выбранную комплектацию?")) return;
+  state = { series: "400", qty: {}, client: { name: "", phone: "", comment: "" }, open: {} };
+  save();
+  renderAll();
+});
+
+/* ---------- modal ---------- */
+function openModal() {
+  byId("modal").hidden = false;
+  document.body.style.overflow = "hidden";
+  setTimeout(() => { const i = byId("leadForm").querySelector("input[name=name]"); if (i) i.focus(); }, 50);
+}
+function closeModal() {
+  byId("modal").hidden = true;
+  document.body.style.overflow = "";
+}
+byId("modalX").addEventListener("click", closeModal);
+byId("modal").addEventListener("click", e => { if (e.target === byId("modal")) closeModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+let leadSending = false;
+byId("leadForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (leadSending) return;
+  const f = e.target;
+  if (f.botcheck && f.botcheck.checked) return; // ловушка для ботов
+  state.client = { name: f.name.value.trim(), phone: f.phone.value.trim(), comment: f.comment.value.trim() };
+  save();
+
+  const c = calc();
+  const s = seriesInfo(state.series);
+  const lines = c.items.map(i => `${i.opt.name} — ${i.q} ${i.opt.unit} — ${i.price ? fmt(i.price * i.q) : "по запросу"}`);
+
+  const btn = f.querySelector('button[type="submit"]');
+  const prevLabel = btn.textContent;
+  leadSending = true;
+  btn.disabled = true;
+  btn.textContent = "Отправляем…";
+
+  let sent = false;
+  const comments = [
+    `Серия: ${s.code} (модуль ${s.module} мм)`,
+    `Базовая цена: ${fmt(c.base)}`,
+    "",
+    "Опции:",
+    ...(lines.length ? lines : ["—"]),
+    "",
+    `Итого: ${fmt(c.total)}`,
+    c.ask ? `Позиций по запросу: ${c.ask}` : "",
+    state.client.comment ? `Комментарий клиента: ${state.client.comment}` : "",
+    `Страница: ${location.href}`,
+  ].filter(Boolean).join("\n");
+
+  const leadPayload = {
+    TITLE: `Заявка с конфигуратора: серия ${s.code}`,
+    NAME: state.client.name,
+    PHONE: [{ VALUE: state.client.phone, VALUE_TYPE: "WORK" }],
+    COMMENTS: comments,
+    SOURCE_DESCRIPTION: "Конфигуратор каравана",
+    STATUS_ID: "NEW",
+  };
+
+  // Bitrix REST: сначала JSON, при CORS-ошибке — form-urlencoded без чтения ответа.
+  try {
+    const res = await fetch(LEAD_ENDPOINT + "crm.lead.add.json", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ fields: leadPayload, params: { REGISTER_SONET_EVENT: "Y" } })
+    });
+    const data = await res.json().catch(() => ({}));
+    sent = res.ok && data && data.result > 0;
+  } catch (err) {
+    try {
+      const body = new URLSearchParams();
+      body.append("fields[TITLE]", leadPayload.TITLE);
+      body.append("fields[NAME]", leadPayload.NAME);
+      body.append("fields[PHONE][0][VALUE]", state.client.phone);
+      body.append("fields[PHONE][0][VALUE_TYPE]", "WORK");
+      body.append("fields[COMMENTS]", comments);
+      body.append("fields[SOURCE_DESCRIPTION]", "Конфигуратор каравана");
+      await fetch(LEAD_ENDPOINT + "crm.lead.add.json", { method: "POST", mode: "no-cors", body });
+      sent = true;
+    } catch (err2) { sent = false; }
+  }
+
+  leadSending = false;
+  btn.disabled = false;
+  btn.textContent = prevLabel;
+
+  byId("okTitle").textContent = sent ? "Заявка отправлена" : "Заявка сформирована";
+  byId("okNote").textContent = sent
+    ? "Мы получили заявку и свяжемся в рабочее время. Можно также скачать коммерческое предложение."
+    : "Скачайте коммерческое предложение или отправьте его менеджеру.";
+  byId("formWrap").hidden = true;
+  byId("okWrap").hidden = false;
+  byId("okMail").href = mailtoLink();
+});
+
+/* ---------- КП / печать ---------- */
+function buildPrintDoc() {
+  const c = calc();
+  const s = seriesInfo(state.series);
+  const d = new Date().toLocaleDateString("ru-RU");
+  const rows = c.items.map((i, n) => `
+    <tr><td>${n + 1}</td><td>${i.opt.name}</td><td class="c">${i.q} ${i.opt.unit}</td>
+      <td class="r">${i.price ? fmt(i.price * i.q) : "по запросу"}</td></tr>`).join("");
+  byId("printArea").innerHTML = `
+    <div class="pr-head">
+      <img src="assets/logo.png" class="pr-logo" alt="FCampers">
+      <div class="pr-date">Коммерческое предложение от ${d}</div>
+    </div>
+    <h1>Расчёт комплектации каравана</h1>
+    <div class="pr-client">
+      <div><b>Серия:</b> ${s.code} · модуль ${s.module} мм</div>
+      ${state.client.name ? `<div><b>Клиент:</b> ${state.client.name}</div>` : ""}
+      ${state.client.phone ? `<div><b>Телефон:</b> ${state.client.phone}</div>` : ""}
+    </div>
+    <table class="pr-table">
+      <thead><tr><th>№</th><th>Опция</th><th class="c">Кол-во</th><th class="r">Сумма</th></tr></thead>
+      <tbody>
+        <tr class="pr-base"><td>—</td><td>Базовая комплектация серии ${s.code}</td><td class="c">1</td>
+          <td class="r">${fmt(c.base)}</td></tr>
+        ${rows || `<tr><td colspan="4" class="c">Опции не выбраны</td></tr>`}
+      </tbody>
+      <tfoot><tr><td colspan="3" class="r"><b>Итого</b></td><td class="r"><b>${fmt(c.total)}</b></td></tr></tfoot>
+    </table>
+    ${c.ask ? `<p class="pr-note">Позиции «по запросу» (${c.ask}) в сумму не входят — стоимость уточняется у менеджера.</p>` : ""}
+    ${state.client.comment ? `<p class="pr-note">Комментарий: ${state.client.comment}</p>` : ""}
+    <p class="pr-note">Предварительная оценка, не является публичной офертой. Цены действительны на дату расчёта.
+      Итоговая стоимость фиксируется после согласования комплектации и подписания договора.</p>
+    <div class="pr-foot">${CONTACT_PHONE} · ${CONTACT_EMAIL}</div>`;
+}
+
+function printKP() { buildPrintDoc(); window.print(); }
+byId("btnPrint").addEventListener("click", printKP);
+byId("okPrint").addEventListener("click", printKP);
+
+function mailtoLink() {
+  const c = calc();
+  const s = seriesInfo(state.series);
+  const lines = c.items.map(i => `• ${i.opt.name} — ${i.q} ${i.opt.unit} — ${i.price ? fmt(i.price * i.q) : "по запросу"}`);
+  const body = [
+    "Заявка на расчёт каравана FCampers",
+    `Серия: ${s.code} (модуль ${s.module} мм)`,
+    `Базовая цена: ${fmt(c.base)}`,
+    "",
+    "Опции:",
+    ...(lines.length ? lines : ["—"]),
+    "",
+    `Итого: ${fmt(c.total)}`,
+    c.ask ? `Позиций по запросу: ${c.ask}` : "",
+    "",
+    `Клиент: ${state.client.name || "—"}, ${state.client.phone || "—"}`,
+    state.client.comment ? `Комментарий: ${state.client.comment}` : ""
+  ].filter(Boolean).join("\n");
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Заявка на расчёт каравана FCampers")}&body=${encodeURIComponent(body)}`;
+}
+
+/* ---------- share / csv ---------- */
+byId("btnShare").addEventListener("click", async () => {
+  const payload = btoa(encodeURIComponent(JSON.stringify({ s: state.series, q: state.qty })));
+  const url = location.origin + location.pathname + "#" + payload;
+  try {
+    await navigator.clipboard.writeText(url);
+    alert("Ссылка на комплектацию скопирована.");
+  } catch (e) {
+    prompt("Скопируйте ссылку:", url);
+  }
+});
+
+/* ---------- boot ---------- */
+const fromHash = loadHash();
+if (!fromHash) load();
+renderBase();
+renderAll();
+
+/* восстановить количество в полях после рендера */
+Object.keys(state.qty).forEach(id => {
+  const row = document.querySelector(`.opt[data-id="${id}"]`);
+  if (row) {
+    const v = state.qty[id] || 0;
+    row.querySelector("[data-q]").value = v;
+    row.querySelector(".step").classList.toggle("on", v > 0);
+  }
+});
+updateSummary();
+
+byId("heroOpts").textContent = DATA.categories.reduce((a, c) => a + c.options.length, 0);
+if (location.search.indexOf("print") !== -1) { buildPrintDoc(); }
+</script>
+
+<script>
+/* auto-height for iframe embedding */
+(function(){
+  function send(){
+    try { parent.postMessage({ type: 'fcconf-height', height: Math.ceil(document.documentElement.scrollHeight) }, '*'); } catch (e) {}
+  }
+  window.addEventListener('load', send);
+  window.addEventListener('resize', send);
+  setInterval(send, 1000);
+})();
+</script><style>.fc-embed .site-head,.fc-embed .mbar{display:none!important}</style>
+<script>if(location.search.indexOf('embed=1')>=0){document.documentElement.classList.add('fc-embed');}</script></body>
+</html>
+
+
+

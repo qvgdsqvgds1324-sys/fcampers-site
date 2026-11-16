@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ru" data-theme="fcampers">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FCampers — караваны и автодома под заказ. Соберите комплектацию онлайн</title>
+  <meta name="description" content="Караваны FCampers серий 300, 400 и 500: модули 300–500 мм, независимая подвеска, индивидуальные опции. Соберите комплектацию в конфигураторе и получите предварительный расчёт.">
+  <meta property="og:title" content="FCampers — караваны под заказ">
+  <meta property="og:description" content="Соберите конфигурацию каравана онлайн: серии 300, 400, 500 и индивидуальные опции.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/hero.jpg">
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/vendor/swiper.css">
+  <link rel="stylesheet" href="assets/vendor/swiper-navigation.css">
+  <link rel="stylesheet" href="assets/vendor/swiper-pagination.css">
+  <link rel="stylesheet" href="assets/vendor/lenis.css">
+  <link rel="stylesheet" href="assets/build/app.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="container-x flex items-center gap-6 py-3">
+    <a href="/" class="flex items-center gap-2 shrink-0" aria-label="FCampers — на главную">
+      <img src="assets/img/logo.png" alt="FCampers" class="h-8 w-auto">
+    </a>
+    <nav class="hidden lg:flex items-center gap-6 ml-2" aria-label="Основная навигация">
+      <a class="nav-link" href="#series">Серии</a>
+      <a class="nav-link" href="#features">Преимущества</a>
+      <a class="nav-link" href="#steps">Как заказать</a>
+      <a class="nav-link" href="#gallery">Галерея</a>
+      <a class="nav-link" href="#faq">Вопросы</a>
+      <a class="nav-link" href="#lead">Контакты</a>
+    </nav>
+    <div class="ml-auto flex items-center gap-3">
+      <a class="hidden sm:block text-sm font-semibold text-navy" href="tel:+74996382405">+7 (499) 638-24-05</a>
+      <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Собрать конфигурацию</a>
+      <button id="burger" class="btn btn-ghost btn-sm lg:hidden" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="mobile-menu lg:hidden border-t border-base-300 bg-white" hidden>
+    <nav class="container-x py-4 grid gap-2" aria-label="Мобильная навигация">
+      <a class="py-2 font-semibold" href="#series">Серии</a>
+      <a class="py-2 font-semibold" href="#features">Преимущества</a>
+      <a class="py-2 font-semibold" href="#steps">Как заказать</a>
+      <a class="py-2 font-semibold" href="#gallery">Галерея</a>
+      <a class="py-2 font-semibold" href="#faq">Вопросы</a>
+      <a class="py-2 font-semibold" href="#lead">Контакты</a>
+      <a class="btn btn-primary mt-2" href="configurator/">Собрать конфигурацию</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero-dark">
+    <div class="container-x grid lg:grid-cols-2 gap-10 items-center py-14 lg:py-20">
+      <div>
+        <span class="eyebrow text-white/70">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>
+          Собственное производство караванов
+        </span>
+        <h1 class="mt-4 font-extrabold leading-[1.08] tracking-tight" style="font-size:clamp(30px,4.4vw,56px)">
+          Караван, собранный<br class="hidden sm:block"> под ваш маршрут
+        </h1>
+        <p class="mt-5 text-white/80 text-lg max-w-xl">
+          Серии 300, 400 и 500: модули от 300 до 500 мм, независимая подвеска и индивидуальные опции.
+          Соберите комплектацию онлайн — увидите стоимость сразу.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a class="btn btn-primary btn-lg rounded-xl" href="configurator/">Собрать конфигурацию</a>
+          <a class="btn btn-outline btn-lg rounded-xl text-white border-white/40 hover:bg-white hover:text-navy" href="#series">Смотреть серии</a>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
+          <span>Серия 300 — от <b class="text-white">1 750 000 ₽</b></span>
+          <span>Расчёт за 3 минуты</span>
+          <span>КП на почту или в CRM</span>
+        </div>
+      </div>
+      <div class="hero-photo reveal">
+        <img src="assets/img/hero.jpg" alt="Караван FCampers на природе" width="1600" height="1000" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- SERIES -->
+  <section id="series" class="section bg-sand">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div>
+          <span class="eyebrow">Серии</span>
+          <h2 class="section-title mt-2">Три базы — под разный ритм путешествий</h2>
+        </div>
+        <p class="text-muted max-w-md">От компактного модуля 300 мм до просторного 500 мм. Комплектация настраивается под ваш сценарий.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="series-card reveal">
+          <img class="series-photo" src="assets/img/model-300.jpg" alt="Караван FCampers серии 300" loading="lazy">
+          <div class="p-6 flex flex-col grow">
+            <h3 class="text-xl font-extrabold">Серия 300</h3>
+            <p class="text-sm text-muted mt-1">Компактная база для двоих</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li>Модуль 300 мм</li>
+              <li>2 аутригера</li>
+              <li>1 боковое окно</li>
+              <li>Холодильник 50 л</li>
+            </ul>
+            <div class="mt-5 pt-4 border-t border-base-300 flex items-center justify-between">
+              <span class="series-price">1 750 000 ₽</span>
+              <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Выбрать</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="series-card reveal">
+          <img class="series-photo" src="assets/img/model-400.jpg" alt="Караван FCampers серии 400" loading="lazy">
+          <div class="p-6 flex flex-col grow">
+            <h3 class="text-xl font-extrabold">Серия 400</h3>
+            <p class="text-sm text-muted mt-1">Оптимальный баланс для семьи</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li>Модуль 400 мм</li>
+              <li>2 аутригера</li>
+              <li>2 боковых окна</li>
+              <li>Холодильник 65 л</li>
+            </ul>
+            <div class="mt-5 pt-4 border-t border-base-300 flex items-center justify-between">
+              <span class="series-price">1 950 000 ₽</span>
+              <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Выбрать</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="series-card reveal">
+          <img class="series-photo" src="assets/img/model-500.jpg" alt="Караван FCampers серии 500" loading="lazy">
+          <div class="p-6 flex flex-col grow">
+            <h3 class="text-xl font-extrabold">Серия 500</h3>
+            <p class="text-sm text-muted mt-1">Максимум пространства</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li>Модуль 500 мм</li>
+              <li>4 аутригера</li>
+              <li>2 боковых окна</li>
+              <li>Холодильник 65 л</li>
+            </ul>
+            <div class="mt-5 pt-4 border-t border-base-300 flex items-center justify-between">
+              <span class="series-price">2 950 000 ₽</span>
+              <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Выбрать</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="legal-note mt-6">Цены указаны для базовой комплектации и носят информационный характер; итоговая стоимость — после выбора опций.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="section">
+    <div class="container-x">
+      <div class="max-w-2xl">
+        <span class="eyebrow">Преимущества</span>
+        <h2 class="section-title mt-2">Что даёт собственное производство</h2>
+        <p class="text-muted mt-3">Контролируем материалы, конструкцию и сборку — поэтому можем гибко менять планировку и комплектацию.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+        <div class="feature-tile reveal">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/></svg></div>
+          <h3 class="font-bold mt-4">Собственная сборка</h3>
+          <p class="text-sm text-muted mt-2">Производим и собираем на своей площадке — без посредников в цепочке.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h3 class="font-bold mt-4">Три модуля на выбор</h3>
+          <p class="text-sm text-muted mt-2">300, 400 и 500 мм — под разные габариты и сценарии поездок.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="m7 8-4 4 4 4"/><path d="m17 8 4 4-4 4"/></svg></div>
+          <h3 class="font-bold mt-4">Независимая подвеска</h3>
+          <p class="text-sm text-muted mt-2">Опция на Ш-образных рычагах — ровнее ход и устойчивость на трассе.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <h3 class="font-bold mt-4">Отопление и утепление</h3>
+          <p class="text-sm text-muted mt-2">Монопан и сэндвич-панели, продуманная система отопления для холодных ночей.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 4v6"/></svg></div>
+          <h3 class="font-bold mt-4">Индивидуальные опции</h3>
+          <p class="text-sm text-muted mt-2">Люки, ступени, аутригеры, кухня, электрика — собираем под задачу.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3 class="font-bold mt-4">Онлайн-расчёт</h3>
+          <p class="text-sm text-muted mt-2">Конфигуратор считает стоимость по опциям и формирует коммерческое предложение.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIGURATOR CTA -->
+  <section class="section bg-navy text-white">
+    <div class="container-x grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+      <div>
+        <span class="eyebrow text-white/60">Конфигуратор</span>
+        <h2 class="section-title mt-2">Соберите караван и увидите цену сразу</h2>
+        <p class="text-white/75 mt-4 max-w-xl">Выбирайте серию и опции — цена и перечень оборудования пересчитываются моментально. Готовую конфигурацию можно отправить менеджеру.</p>
+        <ul class="mt-6 space-y-2 text-white/80 text-sm">
+          <li class="flex gap-2 items-start"><svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>Пошаговый выбор: серия → опции → итог</li>
+          <li class="flex gap-2 items-start"><svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>Коммерческое предложение в печать или PDF</li>
+          <li class="flex gap-2 items-start"><svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>Заявка уходит менеджеру в CRM</li>
+        </ul>
+        <a class="btn btn-primary btn-lg rounded-xl mt-8" href="configurator/">Открыть конфигуратор</a>
+      </div>
+      <div class="reveal">
+        <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+          <img src="assets/img/interior.jpg" alt="Интерьер каравана FCampers" loading="lazy" class="w-full h-full object-cover">
+        </div>
+        <p class="text-white/50 text-xs mt-3">Предварительная оценка. Не является публичной офертой.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section id="steps" class="section bg-sand">
+    <div class="container-x">
+      <div class="max-w-2xl">
+        <span class="eyebrow">Как заказать</span>
+        <h2 class="section-title mt-2">От идеи до готового каравана</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 mt-10">
+        <div class="reveal">
+          <div class="step-num">1</div>
+          <h3 class="font-bold text-lg mt-4">Выберите серию</h3>
+          <p class="text-muted text-sm mt-2">300 — компактно, 400 — универсально, 500 — просторно. Сравните базовые комплектации.</p>
+        </div>
+        <div class="reveal">
+          <div class="step-num">2</div>
+          <h3 class="font-bold text-lg mt-4">Настройте опции</h3>
+          <p class="text-muted text-sm mt-2">Подвеска, аутригеры, люки, кухня, электрика — отмечайте нужное в конфигураторе.</p>
+        </div>
+        <div class="reveal">
+          <div class="step-num">3</div>
+          <h3 class="font-bold text-lg mt-4">Получите предложение</h3>
+          <p class="text-muted text-sm mt-2">Скачайте КП или отправьте заявку — менеджер уточнит детали и сроки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="eyebrow">Галерея</span>
+          <h2 class="section-title mt-2">Как это выглядит вживую</h2>
+        </div>
+        <div class="flex gap-2">
+          <button class="gallery-prev btn btn-circle btn-outline btn-sm" aria-label="Предыдущее фото">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="gallery-next btn btn-circle btn-outline btn-sm" aria-label="Следующее фото">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="swiper gallery-swiper reveal">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="assets/img/hero.jpg" alt="Караван FCampers — экстерьер" loading="lazy"></div>
+          <div class="swiper-slide"><img src="assets/img/interior.jpg" alt="Караван FCampers — интерьер" loading="lazy"></div>
+          <div class="swiper-slide"><img src="assets/img/model-300.jpg" alt="Серия 300" loading="lazy"></div>
+          <div class="swiper-slide"><img src="assets/img/model-400.jpg" alt="Серия 400" loading="lazy"></div>
+          <div class="swiper-slide"><img src="assets/img/model-500.jpg" alt="Серия 500" loading="lazy"></div>
+        </div>
+        <div class="gallery-pagination swiper-pagination !bottom-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section bg-sand">
+    <div class="container-x grid lg:grid-cols-[0.8fr_1.2fr] gap-10">
+      <div>
+        <span class="eyebrow">Вопросы</span>
+        <h2 class="section-title mt-2">Часто спрашивают</h2>
+        <p class="text-muted mt-3">Не нашли ответ — позвоните или оставьте заявку, менеджер уточнит.</p>
+        <a class="btn btn-outline rounded-xl mt-6" href="#lead">Задать вопрос</a>
+      </div>
+      <div class="space-y-3">
+        <div class="collapse collapse-plus bg-white border border-base-300 rounded-2xl">
+          <input type="radio" name="faq" checked>
+          <div class="collapse-title font-bold">Сколько стоит караван?</div>
+          <div class="collapse-content text-sm text-muted">Базовая серия 300 — от 1 750 000 ₽, 400 — от 1 950 000 ₽, 500 — от 2 950 000 ₽. Итоговая цена зависит от опций: точный расчёт показывает конфигуратор.</div>
+        </div>
+        <div class="collapse collapse-plus bg-white border border-base-300 rounded-2xl">
+          <input type="radio" name="faq">
+          <div class="collapse-title font-bold">Можно ли изменить планировку?</div>
+          <div class="collapse-content text-sm text-muted">Да, производство собственное: длину, окна, аутригеры и внутреннее оснащение обсуждаем под ваш сценарий.</div>
+        </div>
+        <div class="collapse collapse-plus bg-white border border-base-300 rounded-2xl">
+          <input type="radio" name="faq">
+          <div class="collapse-title font-bold">Сколько ждать изготовления?</div>
+          <div class="collapse-content text-sm text-muted">Сроки зависят от серии и набора опций — менеджер назовёт точные даты после согласования конфигурации.</div>
+        </div>
+        <div class="collapse collapse-plus bg-white border border-base-300 rounded-2xl">
+          <input type="radio" name="faq">
+          <div class="collapse-title font-bold">Есть ли доставка?</div>
+          <div class="collapse-content text-sm text-muted">Обсуждаем доставку по РФ индивидуально: самовывоз с производства или перевозка до вашего города.</div>
+        </div>
+        <div class="collapse collapse-plus bg-white border border-base-300 rounded-2xl">
+          <input type="radio" name="faq">
+          <div class="collapse-title font-bold">Что входит в базовую комплектацию?</div>
+          <div class="collapse-content text-sm text-muted">Модуль, аутригеры, боковые окна, холодильник — состав отличается по сериям. Полный список виден в конфигураторе.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD -->
+  <section id="lead" class="section">
+    <div class="container-x grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <span class="eyebrow">Контакты</span>
+        <h2 class="section-title mt-2">Обсудим вашу конфигурацию</h2>
+        <p class="text-muted mt-3 max-w-lg">Оставьте имя и телефон — свяжемся в рабочее время, ответим на вопросы и поможем с опциями.</p>
+        <div class="mt-8 space-y-4 text-sm">
+          <div class="flex items-center gap-3">
+            <span class="feature-icon shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <a class="font-semibold text-navy" href="tel:+74996382405">+7 (499) 638-24-05</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="feature-icon shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <a class="font-semibold text-navy" href="mailto:familycampers@ya.ru">familycampers@ya.ru</a>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="feature-icon shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="text-muted">Московская обл., г. Красногорск, Оптический пр., 8А<br><span class="text-xs">Пн–Пт: 9:00–18:00</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lead-card">
+        <h3 class="text-xl font-extrabold">Оставить заявку</h3>
+        <p class="text-sm text-muted mt-1">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+        <form id="leadForm" class="mt-5 grid gap-3" novalidate>
+          <label class="form-control w-full">
+            <span class="label-text font-semibold text-sm mb-1">Имя *</span>
+            <input name="name" type="text" required autocomplete="name" class="input input-bordered w-full rounded-xl" placeholder="Как к вам обращаться">
+          </label>
+          <label class="form-control w-full">
+            <span class="label-text font-semibold text-sm mb-1">Телефон *</span>
+            <input name="phone" type="tel" required autocomplete="tel" inputmode="tel" class="input input-bordered w-full rounded-xl" placeholder="+7 (___) ___-__-__">
+          </label>
+          <label class="form-control w-full">
+            <span class="label-text font-semibold text-sm mb-1">Комментарий</span>
+            <textarea name="comment" rows="3" class="textarea textarea-bordered w-full rounded-xl" placeholder="Серия, опции, вопросы"></textarea>
+          </label>
+          <label class="label cursor-pointer justify-start gap-3 items-start py-1">
+            <input type="checkbox" name="consent" required class="checkbox checkbox-primary checkbox-sm mt-0.5">
+            <span class="label-text text-xs leading-relaxed">
+              Я даю <a class="link link-primary" href="https://familycampers.ru/soglasie/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+              и принимаю <a class="link link-primary" href="https://familycampers.ru/politika_pers_danih/" target="_blank" rel="noopener">политику обработки ПДн</a>.
+            </span>
+          </label>
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+          <button class="btn btn-primary rounded-xl" type="submit">Отправить заявку</button>
+          <div id="formOk" class="alert alert-success text-sm rounded-xl" hidden></div>
+          <div id="formErr" class="alert alert-error text-sm rounded-xl" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container-x py-12 grid md:grid-cols-[1.2fr_0.8fr_0.8fr] gap-8">
+    <div>
+      <img src="assets/img/logo-white.png" alt="FCampers" class="h-8 w-auto">
+      <p class="text-sm mt-4 max-w-sm">Караваны и автодома под заказ. Собственное производство, индивидуальная комплектация, онлайн-конфигуратор.</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white mb-3">Реквизиты</div>
+      <p>ООО «Семейные кемперы»</p>
+      <p>ИНН 5024254758</p>
+      <p>КПП 502401001</p>
+      <p>ОГРН 1255000067574</p>
+      <p class="mt-2">Московская обл., г. Красногорск,<br>Оптический пр., 8А</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white mb-3">Контакты и документы</div>
+      <p><a href="tel:+74996382405">+7 (499) 638-24-05</a></p>
+      <p><a href="mailto:familycampers@ya.ru">familycampers@ya.ru</a></p>
+      <p class="mt-3"><a href="https://familycampers.ru/politika_pers_danih/" target="_blank" rel="noopener">Политика обработки ПДн</a></p>
+      <p><a href="https://familycampers.ru/soglasie/" target="_blank" rel="noopener">Согласие на обработку ПДн</a></p>
+      <p class="mt-3"><a href="configurator/">Конфигуратор</a></p>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-x py-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-white/50">
+      <p>© <span data-year>2026</span> FCampers. Все права защищены.</p>
+      <p>Информация на сайте не является публичной офертой.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/build/app.js"></script>
+</body>
+</html>
