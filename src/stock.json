@@ -5,7 +5,7 @@
     "status": "Комиссионный",
     "price": "2 399 000 ₽",
     "href": "https://familycampers.ru/fc430/",
-    "img": "assets/img/stock/stock-1.png",
+    "img": "assets/img/stock/stock-1.webp",
     "alt": "FC 430 Комиссионный"
   },
   {
@@ -14,7 +14,7 @@
     "status": "Комиссионный",
     "price": "2 199 000 ₽",
     "href": "https://familycampers.ru/fc360-900km/",
-    "img": "assets/img/stock/stock-2.png",
+    "img": "assets/img/stock/stock-2.webp",
     "alt": "FC 360 Комиссионный"
   },
   {
@@ -23,7 +23,7 @@
     "status": "Комиссионный",
     "price": "2 100 000 ₽",
     "href": "https://familycampers.ru/fc360-komission/",
-    "img": "assets/img/stock/stock-3.png",
+    "img": "assets/img/stock/stock-3.webp",
     "alt": "FC 360 Комиссионный"
   },
   {
@@ -32,7 +32,7 @@
     "status": "Финальная стадия сборки",
     "price": "1 859 000 ₽",
     "href": "https://familycampers.ru/fc360-new/",
-    "img": "assets/img/stock/stock-4.png",
+    "img": "assets/img/stock/stock-4.webp",
     "alt": "FC 360 Финальная стадия сборки"
   }
 ]
