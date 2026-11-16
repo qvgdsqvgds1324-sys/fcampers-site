@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Конфигуратор каравана FCampers — соберите комплектацию и узнайте цену</title>
 <meta name="description" content="Онлайн-конфигуратор караванов FCampers: три серии, 73 опции, мгновенный расчёт стоимости.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
 <style>
+@font-face{font-family:"Manrope";src:url("../assets/fonts/manrope-cyrillic-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Manrope";src:url("../assets/fonts/manrope-latin-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap}
+
 :root{
   --navy:#0E2233; --navy2:#12344D; --copper:#0078D7; --copper2:#0066B8;
   --sand:#F5F7F9; --card:#FFFFFF; --ink:#1B1B1B; --muted:#6B7785;
@@ -18,7 +21,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+body{margin:0;font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   color:var(--ink);background:var(--sand);line-height:1.45;-webkit-font-smoothing:antialiased}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -317,7 +320,7 @@ button{font:inherit;cursor:pointer}
   <div class="wrap hero-inner">
     <div>
       <div class="eyebrow">Караваны FCampers · 2026</div>
-      <h1>Соберите свой караван<br>и узнайте цену сразу</h1>
+      <h1>Соберите свой караван <br>и узнайте цену сразу</h1>
       <p class="lead">Три серии и более 70 опций. Выбирайте комплектацию — стоимость пересчитывается мгновенно.
         Это предварительная оценка, а не публичная оферта.</p>
       <div class="hero-actions">
@@ -396,7 +399,7 @@ button{font:inherit;cursor:pointer}
 
 <footer class="foot">
   <div class="wrap">
-    <span>© FCampers · familycampers.ru</span>
+    <span>© FCampers · familycampers.ru · <a href="mailto:familycampers@ya.ru" style="color:inherit">familycampers@ya.ru</a></span>
       <span><a href="../usloviya/">Условия заказа</a> · <a href="../politika/">Политика ПДн</a></span>
     <span>Цены по прайсу «Оптима, все серии» от 26.10.2026 · не является публичной офертой</span>
       <span>ООО «Семейные кемперы» · ИНН 5024254758 · ОГРН 1255000067574</span>
