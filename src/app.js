@@ -1,4 +1,4 @@
-﻿document.documentElement.classList.add("js");
+document.documentElement.classList.add("js");
 
 import Lenis from "lenis";
 import Swiper from "swiper";
@@ -108,25 +108,25 @@ if (form) {
     const comment = (form.comment?.value || "").trim();
     const consent = form.consent;
     if (consent && !consent.checked) {
-      show(errBox, "РћС‚РјРµС‚СЊС‚Рµ СЃРѕРіР»Р°СЃРёРµ РЅР° РѕР±СЂР°Р±РѕС‚РєСѓ РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С….");
+      show(errBox, "Отметьте согласие на обработку персональных данных.");
       return;
     }
     if (name.length < 2 || phone.length < 6) {
-      show(errBox, "РЈРєР°Р¶РёС‚Рµ РёРјСЏ Рё С‚РµР»РµС„РѕРЅ.");
+      show(errBox, "Укажите имя и телефон.");
       return;
     }
 
     const btn = form.querySelector('button[type="submit"]');
     const prev = btn ? btn.textContent : "";
-    if (btn) { btn.disabled = true; btn.textContent = "РћС‚РїСЂР°РІР»СЏРµРјвЂ¦"; }
+    if (btn) { btn.disabled = true; btn.textContent = "Отправляем…"; }
 
     const payload = {
       fields: {
-        TITLE: "Р—Р°СЏРІРєР° СЃ СЃР°Р№С‚Р° (РіР»Р°РІРЅР°СЏ)",
+        TITLE: "Заявка с сайта (главная)",
         NAME: name,
         PHONE: [{ VALUE: phone, VALUE_TYPE: "WORK" }],
-        COMMENTS: comment || "вЂ”",
-        SOURCE_DESCRIPTION: "РЎР°Р№С‚ fcampers вЂ” РіР»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°",
+        COMMENTS: comment || "—",
+        SOURCE_DESCRIPTION: "Сайт fcampers — главная страница",
         EMAIL: [{ VALUE: "familycampers@ya.ru", VALUE_TYPE: "WORK" }],
       },
     };
@@ -162,9 +162,9 @@ if (form) {
 
     if (sent) {
       form.reset();
-      show(okBox, "Р—Р°СЏРІРєР° РѕС‚РїСЂР°РІР»РµРЅР°. РЎРІСЏР¶РµРјСЃСЏ РІ СЂР°Р±РѕС‡РµРµ РІСЂРµРјСЏ.");
+      show(okBox, "Заявка отправлена. Свяжемся в рабочее время.");
     } else {
-      show(errBox, "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚СЊ. РџРѕР·РІРѕРЅРёС‚Рµ: +7 (499) 638-24-05.");
+      show(errBox, "Не удалось отправить. Позвоните: +7 (499) 638-24-05.");
     }
   });
 }
