@@ -24,7 +24,7 @@
     <a href="/" class="flex items-center gap-2 shrink-0" aria-label="FCampers — на главную">
       <img src="assets/img/logo.png" alt="FCampers" class="h-8 w-auto">
     </a>
-    <nav class="hidden lg:flex items-center gap-6 ml-2" aria-label="Основная навигация">
+    <nav class="hidden xl:flex items-center gap-6 ml-2" aria-label="Основная навигация">
       <a class="nav-link" href="#series">Серии</a>
       <a class="nav-link" href="#features">Преимущества</a>
       <a class="nav-link" href="#steps">Как заказать</a>
@@ -33,14 +33,17 @@
       <a class="nav-link" href="#lead">Контакты</a>
     </nav>
     <div class="ml-auto flex items-center gap-3">
-      <a class="hidden sm:block text-sm font-semibold text-navy" href="tel:+74996382405">+7 (499) 638-24-05</a>
-      <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Собрать конфигурацию</a>
-      <button id="burger" class="btn btn-ghost btn-sm lg:hidden" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
+      <a class="hidden xl:block text-sm font-semibold text-navy" href="tel:+74996382405">+7 (499) 638-24-05</a>
+      <a class="btn btn-primary btn-sm rounded-xl hidden sm:inline-flex" href="configurator/">
+        <span class="hidden sm:inline">Собрать конфигурацию</span>
+        <span class="sm:hidden">Конфигуратор</span>
+      </a>
+      <button id="burger" class="btn btn-ghost btn-sm xl:hidden" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </div>
-  <div id="mobileMenu" class="mobile-menu lg:hidden border-t border-base-300 bg-white" hidden>
+  <div id="mobileMenu" class="mobile-menu xl:hidden border-t border-base-300 bg-white" hidden>
     <nav class="container-x py-4 grid gap-2" aria-label="Мобильная навигация">
       <a class="py-2 font-semibold" href="#series">Серии</a>
       <a class="py-2 font-semibold" href="#features">Преимущества</a>
@@ -56,13 +59,13 @@
 <main>
   <!-- HERO -->
   <section class="hero-dark">
-    <div class="container-x grid lg:grid-cols-2 gap-10 items-center py-14 lg:py-20">
+    <div class="container-x grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-10 sm:py-14 lg:py-20">
       <div>
         <span class="eyebrow text-white/70">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>
           Собственное производство караванов
         </span>
-        <h1 class="mt-4 font-extrabold leading-[1.08] tracking-tight" style="font-size:clamp(30px,4.4vw,56px)">
+        <h1 class="h1-fluid mt-4 font-extrabold tracking-tight">
           Караван, собранный<br class="hidden sm:block"> под ваш маршрут
         </h1>
         <p class="mt-5 text-white/80 text-lg max-w-xl">
@@ -70,8 +73,8 @@
           Соберите комплектацию онлайн — увидите стоимость сразу.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a class="btn btn-primary btn-lg rounded-xl" href="configurator/">Собрать конфигурацию</a>
-          <a class="btn btn-outline btn-lg rounded-xl text-white border-white/40 hover:bg-white hover:text-navy" href="#series">Смотреть серии</a>
+          <a class="btn btn-primary btn-lg rounded-xl w-full sm:w-auto" href="configurator/">Собрать конфигурацию</a>
+          <a class="btn btn-outline btn-lg rounded-xl w-full sm:w-auto text-white border-white/40 hover:bg-white hover:text-navy" href="#series">Смотреть серии</a>
         </div>
         <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
           <span>Серия 300 — от <b class="text-white">1 750 000 ₽</b></span>
@@ -96,7 +99,7 @@
         <p class="text-muted max-w-md">От компактного модуля 300 мм до просторного 500 мм. Комплектация настраивается под ваш сценарий.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
         <article class="series-card reveal">
           <img class="series-photo" src="assets/img/model-300.jpg" alt="Караван FCampers серии 300" loading="lazy">
           <div class="p-6 flex flex-col grow">
@@ -110,7 +113,7 @@
             </ul>
             <div class="mt-5 pt-4 border-t border-base-300 flex items-center justify-between">
               <span class="series-price">1 750 000 ₽</span>
-              <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Выбрать</a>
+              <a class="btn btn-primary btn-sm rounded-xl hidden sm:inline-flex" href="configurator/">Выбрать</a>
             </div>
           </div>
         </article>
@@ -128,7 +131,7 @@
             </ul>
             <div class="mt-5 pt-4 border-t border-base-300 flex items-center justify-between">
               <span class="series-price">1 950 000 ₽</span>
-              <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Выбрать</a>
+              <a class="btn btn-primary btn-sm rounded-xl hidden sm:inline-flex" href="configurator/">Выбрать</a>
             </div>
           </div>
         </article>
@@ -146,7 +149,7 @@
             </ul>
             <div class="mt-5 pt-4 border-t border-base-300 flex items-center justify-between">
               <span class="series-price">2 950 000 ₽</span>
-              <a class="btn btn-primary btn-sm rounded-xl" href="configurator/">Выбрать</a>
+              <a class="btn btn-primary btn-sm rounded-xl hidden sm:inline-flex" href="configurator/">Выбрать</a>
             </div>
           </div>
         </article>
@@ -228,7 +231,7 @@
         <span class="eyebrow">Как заказать</span>
         <h2 class="section-title mt-2">От идеи до готового каравана</h2>
       </div>
-      <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
         <div class="reveal">
           <div class="step-num">1</div>
           <h3 class="font-bold text-lg mt-4">Выберите серию</h3>
@@ -319,7 +322,7 @@
 
   <!-- LEAD -->
   <section id="lead" class="section">
-    <div class="container-x grid lg:grid-cols-2 gap-10 items-start">
+    <div class="container-x grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       <div>
         <span class="eyebrow">Контакты</span>
         <h2 class="section-title mt-2">Обсудим вашу конфигурацию</h2>
@@ -358,7 +361,7 @@
           </label>
           <label class="label cursor-pointer justify-start gap-3 items-start py-1">
             <input type="checkbox" name="consent" required class="checkbox checkbox-primary checkbox-sm mt-0.5">
-            <span class="label-text text-xs leading-relaxed">
+            <span class="text-xs leading-relaxed">
               Я даю <a class="link link-primary" href="soglasie/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
               и принимаю <a class="link link-primary" href="politika/" target="_blank" rel="noopener">политику обработки ПДн</a>.
             </span>

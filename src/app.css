@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 /* daisyUI: brand theme derived from configurator palette */
 @plugin "daisyui" {
@@ -71,31 +71,93 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--font-sans);
   color: var(--color-ink);
   background: #fff;
+  overflow-x: clip;
 }
 
-/* layout helpers */
+/* ---------- fluid layout: scales smoothly on any screen ---------- */
 .container-x {
   width: 100%;
-  max-width: 1200px;
+  max-width: min(1560px, 100%);
   margin-inline: auto;
-  padding-inline: 20px;
+  padding-inline: clamp(16px, 3.2vw, 48px);
+}
+
+/* grid/flex children must be allowed to shrink on narrow screens */
+#lead .container-x > *,
+.lead-card,
+#leadForm,
+#leadForm > *,
+#leadForm .form-control {
+  min-width: 0;
+}
+#leadForm input,
+#leadForm textarea,
+#leadForm select {
+  min-width: 0;
+  width: 100%;
+}
+
+/* consent label: allow wrapping on narrow screens */
+#leadForm label.label {
+  white-space: normal;
+  flex-wrap: wrap;
+}
+#leadForm label.label > span {
+  min-width: 0;
+  flex: 1 1 220px;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .section {
-  padding-block: clamp(56px, 7vw, 96px);
+  padding-block: clamp(44px, 5.6vw, 112px);
 }
 
 .section-title {
-  font-size: clamp(26px, 3.2vw, 40px);
-  line-height: 1.15;
+  font-size: clamp(24px, 1.05rem + 1.9vw, 52px);
+  line-height: 1.12;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+}
+
+/* auto-scaling type for hero */
+.h1-fluid {
+  font-size: clamp(28px, 1.15rem + 3.2vw, 68px);
+  line-height: 1.06;
+}
+
+/* large displays (2K/4K) */
+@media (min-width: 1700px) {
+  .container-x {
+    max-width: 1640px;
+  }
+  .hero-photo {
+    max-height: 620px;
+  }
+}
+@media (min-width: 2200px) {
+  .container-x {
+    max-width: 1880px;
+    padding-inline: 64px;
+  }
+}
+
+/* small phones */
+@media (max-width: 380px) {
+  .container-x {
+    padding-inline: 14px;
+  }
+  .section {
+    padding-block: 40px;
+  }
 }
 
 .eyebrow {
@@ -122,6 +184,8 @@ body {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 30px 80px rgba(3, 12, 20, 0.45);
+  aspect-ratio: 4 / 3;
+  max-height: min(52vw, 560px);
 }
 
 .hero-photo img {
@@ -129,6 +193,13 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+
+/* hero buttons scale a bit tighter on tablets so they fit one row */
+.hero-dark .btn-lg {
+  padding-inline: clamp(14px, 1.7vw, 28px);
+  font-size: clamp(14px, 0.86rem + 0.22vw, 17px);
 }
 
 /* series cards */
@@ -147,14 +218,16 @@ body {
 }
 .series-card img.series-photo {
   width: 100%;
-  height: 210px;
+  height: clamp(180px, 16vw, 260px);
   object-fit: cover;
   display: block;
+  background: #f5f7f9;
 }
 .series-price {
-  font-size: 22px;
+  font-size: clamp(18px, 1.05rem + 0.35vw, 24px);
   font-weight: 800;
   color: var(--color-navy);
+  white-space: nowrap;
 }
 
 /* feature tiles */
@@ -162,23 +235,24 @@ body {
   background: #fff;
   border: 1px solid #e3e6e8;
   border-radius: 16px;
-  padding: 22px;
+  padding: clamp(16px, 1.6vw, 26px);
   height: 100%;
 }
 .feature-icon {
-  width: 44px;
-  height: 44px;
+  width: clamp(38px, 3vw, 48px);
+  height: clamp(38px, 3vw, 48px);
   border-radius: 12px;
   display: grid;
   place-items: center;
   background: rgba(0, 120, 215, 0.1);
   color: var(--color-primary);
+  flex: 0 0 auto;
 }
 
 /* steps */
 .step-num {
-  width: 40px;
-  height: 40px;
+  width: clamp(36px, 2.6vw, 44px);
+  height: clamp(36px, 2.6vw, 44px);
   border-radius: 999px;
   display: grid;
   place-items: center;
@@ -195,7 +269,7 @@ body {
 }
 .gallery-swiper .swiper-slide img {
   width: 100%;
-  height: clamp(260px, 42vw, 480px);
+  height: clamp(220px, 34vw, 560px);
   object-fit: cover;
   display: block;
 }
@@ -231,6 +305,7 @@ body {
 }
 
 .nav-link {
+  white-space: nowrap;
   font-size: 15px;
   font-weight: 600;
   color: var(--color-navy);
