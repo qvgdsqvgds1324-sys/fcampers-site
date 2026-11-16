@@ -6,8 +6,9 @@
   "scripts": {
     "build:css": "tailwindcss -i ./src/app.css -o ./assets/build/app.css --minify",
     "build:js": "esbuild ./src/app.js --bundle --minify --format=esm --target=es2020 --outfile=./assets/build/app.js",
-    "build": "npm run build:css && npm run build:js",
-    "serve": "node scripts/serve.mjs"
+    "build": "npm run build:css && npm run build:js && npm run stamp",
+    "serve": "node scripts/serve.mjs",
+    "stamp": "node scripts/stamp.mjs"
   },
   "keywords": [],
   "author": "",
