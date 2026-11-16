@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru" data-theme="fcampers">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Прицепы в наличии — FCampers</title>
+  <meta name="description" content="Караваны и прицепы FCampers в наличии: комиссионные модели и автомобили на финальной стадии сборки. Цены и фото, свяжитесь с менеджером.">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="stylesheet" href="../assets/build/app.css">
+  <style>
+    .stock-photo {
+      height: clamp(180px, 18vw, 260px);
+      width: 100%;
+      object-fit: contain;
+      background: #f5f7f9;
+      padding: 10px;
+      display: block;
+    }
+    .stock-card {
+      background: #fff;
+      border: 1px solid #e3e6e8;
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .stock-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(14, 34, 51, 0.12);
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="container-x flex items-center gap-6 py-3">
+    <a href="../" class="flex items-center gap-2 shrink-0" aria-label="FCampers — на главную">
+      <img src="../assets/img/logo.png" alt="FCampers" class="h-8 w-auto">
+    </a>
+    <nav class="hidden xl:flex items-center gap-6 ml-2" aria-label="Основная навигация">
+      <a class="nav-link" href="../#series">Серии</a>
+      <a class="nav-link text-primary" href="./">Прицепы в наличии</a>
+      <a class="nav-link" href="../#features">Преимущества</a>
+      <a class="nav-link" href="../#steps">Как заказать</a>
+      <a class="nav-link" href="../#gallery">Галерея</a>
+      <a class="nav-link" href="../#faq">Вопросы</a>
+      <a class="nav-link" href="../#lead">Контакты</a>
+    </nav>
+    <div class="ml-auto flex items-center gap-3">
+      <a class="hidden xl:block text-sm font-semibold text-navy" href="tel:+74996382405">+7 (499) 638-24-05</a>
+      <a class="btn btn-primary btn-sm rounded-xl hidden sm:inline-flex" href="../configurator/">
+        <span class="hidden sm:inline">Собрать конфигурацию</span>
+        <span class="sm:hidden">Конфигуратор</span>
+      </a>
+      <button id="burger" class="btn btn-ghost btn-sm xl:hidden" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="mobile-menu xl:hidden border-t border-base-300 bg-white" hidden>
+    <nav class="container-x py-4 grid gap-2" aria-label="Мобильная навигация">
+      <a class="py-2 font-semibold" href="../#series">Серии</a>
+      <a class="py-2 font-semibold text-primary" href="./">Прицепы в наличии</a>
+      <a class="py-2 font-semibold" href="../#features">Преимущества</a>
+      <a class="py-2 font-semibold" href="../#steps">Как заказать</a>
+      <a class="py-2 font-semibold" href="../#gallery">Галерея</a>
+      <a class="py-2 font-semibold" href="../#faq">Вопросы</a>
+      <a class="py-2 font-semibold" href="../#lead">Контакты</a>
+      <a class="btn btn-primary mt-2" href="../configurator/">Собрать конфигурацию</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero-dark">
+    <div class="container-x py-10 sm:py-14">
+      <span class="eyebrow text-white/70">Склад</span>
+      <h1 class="h1-fluid mt-4 font-extrabold tracking-tight">Прицепы в наличии</h1>
+      <p class="mt-4 text-white/80 text-lg max-w-2xl">Готовые к покупке караваны и модели на финальной стадии сборки. Наличие и цены уточняйте у менеджера — часть позиций меняется.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="btn btn-primary btn-lg rounded-xl" href="../configurator/">Собрать свой под заказ</a>
+        <a class="btn btn-outline btn-lg rounded-xl text-white border-white/40 hover:bg-white hover:text-navy" href="../#lead">Связаться</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x">
+      <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6" id="stockGrid">
+        <article class="stock-card">
+          <img class="stock-photo" src="../assets/img/stock/stock-1.png" alt="FC 430 Комиссионный" loading="lazy">
+          <div class="p-5 flex flex-col grow">
+            <div class="flex items-center justify-between gap-2 text-xs text-muted">
+              <span>01 / 04</span>
+              <span class="badge badge-outline badge-sm">Комиссионный</span>
+            </div>
+            <h2 class="text-lg font-extrabold mt-3">FC 430</h2>
+            <p class="text-sm text-muted mt-1">Готов к покупке</p>
+            <div class="mt-auto pt-4 border-t border-base-300 flex flex-wrap items-center justify-between gap-3">
+              <span class="series-price">2 399 000 ₽</span>
+              <a class="btn btn-primary btn-sm rounded-xl" href="https://familycampers.ru/fc430/" target="_blank" rel="noopener">Подробнее</a>
+            </div>
+          </div>
+        </article>
+        <article class="stock-card">
+          <img class="stock-photo" src="../assets/img/stock/stock-2.png" alt="FC 360 Комиссионный" loading="lazy">
+          <div class="p-5 flex flex-col grow">
+            <div class="flex items-center justify-between gap-2 text-xs text-muted">
+              <span>02 / 04</span>
+              <span class="badge badge-outline badge-sm">Комиссионный</span>
+            </div>
+            <h2 class="text-lg font-extrabold mt-3">FC 360</h2>
+            <p class="text-sm text-muted mt-1">Готов к покупке</p>
+            <div class="mt-auto pt-4 border-t border-base-300 flex flex-wrap items-center justify-between gap-3">
+              <span class="series-price">2 199 000 ₽</span>
+              <a class="btn btn-primary btn-sm rounded-xl" href="https://familycampers.ru/fc360-900km/" target="_blank" rel="noopener">Подробнее</a>
+            </div>
+          </div>
+        </article>
+        <article class="stock-card">
+          <img class="stock-photo" src="../assets/img/stock/stock-3.png" alt="FC 360 Комиссионный" loading="lazy">
+          <div class="p-5 flex flex-col grow">
+            <div class="flex items-center justify-between gap-2 text-xs text-muted">
+              <span>03 / 04</span>
+              <span class="badge badge-outline badge-sm">Комиссионный</span>
+            </div>
+            <h2 class="text-lg font-extrabold mt-3">FC 360</h2>
+            <p class="text-sm text-muted mt-1">Готов к покупке</p>
+            <div class="mt-auto pt-4 border-t border-base-300 flex flex-wrap items-center justify-between gap-3">
+              <span class="series-price">2 100 000 ₽</span>
+              <a class="btn btn-primary btn-sm rounded-xl" href="https://familycampers.ru/fc360-komission/" target="_blank" rel="noopener">Подробнее</a>
+            </div>
+          </div>
+        </article>
+        <article class="stock-card">
+          <img class="stock-photo" src="../assets/img/stock/stock-4.png" alt="FC 360 Финальная стадия сборки" loading="lazy">
+          <div class="p-5 flex flex-col grow">
+            <div class="flex items-center justify-between gap-2 text-xs text-muted">
+              <span>04 / 04</span>
+              <span class="badge badge-outline badge-sm">Финальная стадия сборки</span>
+            </div>
+            <h2 class="text-lg font-extrabold mt-3">FC 360</h2>
+            <p class="text-sm text-muted mt-1">Готов к покупке</p>
+            <div class="mt-auto pt-4 border-t border-base-300 flex flex-wrap items-center justify-between gap-3">
+              <span class="series-price">1 859 000 ₽</span>
+              <a class="btn btn-primary btn-sm rounded-xl" href="https://familycampers.ru/fc360-new/" target="_blank" rel="noopener">Подробнее</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="legal-note mt-6">Цены указаны для текущих позиций и могут измениться. Информация не является публичной офертой.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x text-center">
+      <h2 class="section-title">Нужна другая комплектация?</h2>
+      <p class="text-muted mt-3 max-w-2xl mx-auto">Соберите караван под себя в конфигураторе — модуль, опции и итоговая стоимость пересчитываются сразу.</p>
+      <a class="btn btn-primary btn-lg rounded-xl mt-7" href="../configurator/">Открыть конфигуратор</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container-x py-12 grid md:grid-cols-[1.2fr_0.8fr_0.8fr] gap-8">
+    <div>
+      <img src="../assets/img/logo-white.png" alt="FCampers" class="h-8 w-auto">
+      <p class="text-sm mt-4 max-w-sm">Караваны и автодома под заказ. Собственное производство, индивидуальная комплектация, онлайн-конфигуратор.</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white mb-3">Реквизиты</div>
+      <p>ООО «Семейные кемперы»</p>
+      <p>ИНН 5024254758</p>
+      <p>КПП 502401001</p>
+      <p>ОГРН 1255000067574</p>
+      <p class="mt-2">Московская обл., г. Красногорск,<br>Оптический пр., 8А</p>
+    </div>
+    <div class="text-sm">
+      <div class="font-bold text-white mb-3">Контакты и документы</div>
+      <p><a href="tel:+74996382405">+7 (499) 638-24-05</a></p>
+      <p><a href="mailto:familycampers@ya.ru">familycampers@ya.ru</a></p>
+      <p class="mt-3"><a href="../politika/">Политика обработки ПДн</a></p>
+      <p><a href="../soglasie/">Согласие на обработку ПДн</a></p>
+      <p class="mt-3"><a href="../configurator/">Конфигуратор</a></p>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-x py-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-white/50">
+      <p>© <span data-year>2026</span> FCampers. Все права защищены.</p>
+      <p>Информация на сайте не является публичной офертой.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  // mobile menu (same behaviour as main page)
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  if (burger && menu) {
+    const setOpen = (open) => { menu.hidden = !open; burger.setAttribute('aria-expanded', String(open)); document.body.style.overflow = open ? 'hidden' : ''; };
+    burger.addEventListener('click', () => setOpen(menu.hidden));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  }
+  document.querySelectorAll('[data-year]').forEach(e => { e.textContent = new Date().getFullYear(); });
+</script>
+</body>
+</html>
