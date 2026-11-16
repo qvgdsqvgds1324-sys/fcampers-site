@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="assets/vendor/swiper-navigation.css">
   <link rel="stylesheet" href="assets/vendor/swiper-pagination.css">
   <link rel="stylesheet" href="assets/vendor/lenis.css">
-  <link rel="stylesheet" href="assets/build/app.css?v=4148fe53">
+  <link rel="stylesheet" href="assets/build/app.css?v=bf3657de">
 </head>
 <body>
 
@@ -188,13 +188,13 @@
         </div>
         <div class="feature-tile reveal">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="4"/></svg></div>
-          <h3 class="font-bold mt-4">Отопление и утепление</h3>
-          <p class="text-sm text-muted mt-2">Монопан и сэндвич-панели, продуманная система отопления для холодных ночей.</p>
+          <h3 class="font-bold mt-4">Отопление и комфорт</h3>
+          <p class="text-sm text-muted mt-2">Монопан и сэндвич-панели разной толщины, а также продуманная система отопления и вентиляции.</p>
         </div>
         <div class="feature-tile reveal">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 4v6"/></svg></div>
           <h3 class="font-bold mt-4">Индивидуальные опции</h3>
-          <p class="text-sm text-muted mt-2">Люки, ступени, боковые упоры, кухня, электрика — собираем под задачу.</p>
+          <p class="text-sm text-muted mt-2">Люки, солнечные панели, маркиза, внешний душ, посудомоечная машина и камера заднего обзора — мы готовы воплотить любые ваши мечты в реальность.</p>
         </div>
         <div class="feature-tile reveal">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
@@ -375,7 +375,7 @@
           <label class="label cursor-pointer justify-start gap-3 items-start py-1">
             <input type="checkbox" name="consent" required class="checkbox checkbox-primary checkbox-sm mt-0.5">
             <span class="text-xs leading-relaxed">
-              Я даю <a class="link link-primary" href="soglasie/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+              Я даю <a class="link link-primary" href="soglasie/" target="_blank" rel="noopener" data-consent-open aria-haspopup="dialog">согласие на обработку персональных данных</a>
               и принимаю <a class="link link-primary" href="politika/" target="_blank" rel="noopener">политику обработки ПДн</a>.
             </span>
           </label>
@@ -393,7 +393,7 @@
   <div class="container-x py-12 grid md:grid-cols-[1.2fr_0.8fr_0.8fr] gap-8">
     <div>
       <img src="assets/img/logo-white.png" alt="FCampers" class="h-8 w-auto">
-      <p class="text-sm mt-4 max-w-sm">Караваны и автодома под заказ. Собственное производство, индивидуальная комплектация, онлайн-конфигуратор.</p>
+      <p class="text-sm mt-4 max-w-sm">Автодома и караваны в наличии и под заказ. Собственное производство полного цикла и индивидуальная комплектация, онлайн-конфигуратор.</p>
     </div>
     <div class="text-sm">
       <div class="font-bold text-white mb-3">Реквизиты</div>
@@ -421,6 +421,20 @@
   </div>
 </footer>
 
-<script type="module" src="assets/build/app.js?v=33c6b1fc"></script>
+
+<div id="consentModal" class="consent-modal" hidden>
+  <div class="consent-modal__box" role="dialog" aria-modal="true" aria-labelledby="consentModalTitle">
+    <button type="button" class="consent-modal__close" data-consent-close aria-label="Закрыть">×</button>
+    <h3 id="consentModalTitle">Согласие на обработку персональных данных</h3>
+    <p>Заполняя форму на сайте familycampers.ru, вы даёте свое согласие на обработку ваших персональных данных.</p>
+    <p class="text-sm text-muted">Полный текст: <a class="link link-primary" href="soglasie/" target="_blank" rel="noopener">согласие</a> · <a class="link link-primary" href="politika/" target="_blank" rel="noopener">политика обработки ПДн</a></p>
+    <div class="flex flex-wrap gap-3 mt-5">
+      <button type="button" class="btn btn-primary rounded-xl" data-consent-accept>Согласен</button>
+      <button type="button" class="btn btn-outline rounded-xl" data-consent-close>Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="assets/build/app.js?v=ade44c2a"></script>
 </body>
 </html>

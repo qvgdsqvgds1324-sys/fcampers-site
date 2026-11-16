@@ -171,3 +171,34 @@ if (form) {
 
 /* ---------- footer year ---------- */
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = String(new Date().getFullYear()); });
+
+/* ---------- consent modal ---------- */
+const consentModal = document.getElementById("consentModal");
+if (consentModal) {
+  const box = consentModal.querySelector(".consent-modal__box");
+  const openConsent = () => {
+    consentModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    consentModal.querySelector("[data-consent-accept]")?.focus();
+  };
+  const closeConsent = () => {
+    consentModal.hidden = true;
+    document.body.style.overflow = "";
+  };
+  document.querySelectorAll("[data-consent-open]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      openConsent();
+    });
+  });
+  consentModal.querySelectorAll("[data-consent-close]").forEach((el) => el.addEventListener("click", closeConsent));
+  consentModal.addEventListener("click", (e) => { if (e.target === consentModal) closeConsent(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !consentModal.hidden) closeConsent(); });
+  consentModal.querySelector("[data-consent-accept]")?.addEventListener("click", () => {
+    const cb = document.querySelector('#leadForm input[name="consent"]');
+    if (cb) cb.checked = true;
+    closeConsent();
+  });
+  box?.addEventListener("touchstart", () => {}, { passive: true });
+}
