@@ -475,7 +475,7 @@ const ICONS = {
 function renderModels() {
   byId("modelCards").innerHTML = DATA.series.map(s => `
     <button class="model ${s.code === state.series ? "sel" : ""}" data-series="${s.code}" aria-pressed="${s.code === state.series}">
-      <div class="model-art"><img src="${s.photo}" alt="Караван FCampers, серия ${s.code}"></div>
+      <div class="model-art"><img src="${s.photo}" alt="Караван FCampers, серия ${s.code}" width="1100" height="1100"></div>
       <div class="model-body">
         <div class="model-top"><h3>Серия ${s.code}</h3><span class="tag">модуль ${s.module} см</span></div>
         <div class="model-feats">${s.features.map(f => `<span>${f}</span>`).join("")}</div>
