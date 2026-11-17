@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qvgdsqvgds1324-sys.github.io/fcampers-site/sitemap.xml
+Sitemap: https://familycampers.ru/sitemap.xml
