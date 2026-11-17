@@ -292,6 +292,7 @@ button{font:inherit;cursor:pointer}
   .hero-inner{grid-template-columns:minmax(0,1fr)}
   .hero-card{display:none}
 }
+.fc-embed .site-head,.fc-embed .mbar{display:none!important}
 </style>
 </head>
 <body>
@@ -405,7 +406,7 @@ button{font:inherit;cursor:pointer}
         <label>Телефон<input name="phone" required placeholder="+7 (___) ___-__-__" inputmode="tel"></label>
         <label>Комментарий<textarea name="comment" rows="2" placeholder="Пожелания по комплектации"></textarea></label>
         <label class="check"><input type="checkbox" name="consent" required> Я даю <a href="../soglasie/" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="../politika/" target="_blank" rel="noopener">политику обработки персональных данных</a></label>
-        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+        <input type="checkbox" name="botcheck" tabindex="-1" style="display:none">
         <button class="btn primary wide" type="submit">Отправить заявку</button>
       </form>
     </div>
@@ -828,6 +829,5 @@ if (location.search.indexOf("print") !== -1) { buildPrintDoc(); }
   window.addEventListener('resize', send);
   setInterval(send, 1000);
 })();
-</script><style>.fc-embed .site-head,.fc-embed .mbar{display:none!important}</style>
-<script>if(location.search.indexOf('embed=1')>=0){document.documentElement.classList.add('fc-embed');}</script></body>
+</script><script>if(location.search.indexOf('embed=1')>=0){document.documentElement.classList.add('fc-embed');}</script></body>
 </html>
