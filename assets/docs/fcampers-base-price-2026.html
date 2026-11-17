@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: "Manrope";
+    src: url("file:///C:/Users/user/fcampers-site/assets/fonts/manrope-cyrillic-wght-normal.woff2") format("woff2");
+    font-weight: 200 800;
+    font-display: swap;
+  }
+  @page { size: A4; margin: 16mm 14mm 16mm 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Manrope", "Segoe UI", Arial, sans-serif; color: #1b1b1b; font-size: 9.2pt; margin: 0; }
+
+  .head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid #0e2233; padding-bottom: 10px; }
+  .brand { font-size: 20pt; font-weight: 800; letter-spacing: -0.02em; color: #0e2233; }
+  .brand span { color: #0063b1; }
+  .doc { text-align: right; }
+  .doc h1 { font-size: 16pt; margin: 0 0 2px; color: #0e2233; letter-spacing: -0.01em; }
+  .doc .sub { color: #5f6b79; font-size: 8.8pt; }
+
+  .intro { margin: 14px 0 16px; color: #3c4652; line-height: 1.45; font-size: 9.4pt; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+  .card { border: 1px solid #e3e6e8; border-radius: 10px; overflow: hidden; background: #f5f7f9; }
+  .card-head { padding: 10px 12px 8px; background: #0e2233; color: #fff; }
+  .card-code { font-size: 8pt; letter-spacing: .16em; opacity: .7; text-transform: uppercase; }
+  .card-title { font-size: 13pt; font-weight: 800; margin-top: 2px; }
+  .card-price { font-size: 14pt; font-weight: 800; margin-top: 6px; }
+  .card-sub { font-size: 8.4pt; opacity: .75; }
+  .card-feats { margin: 0; padding: 10px 12px 10px 26px; color: #3c4652; line-height: 1.4; font-size: 8.6pt; }
+
+  h2 { font-size: 13pt; margin: 6px 0 8px; color: #0e2233; letter-spacing: -0.01em; }
+  table { width: 100%; border-collapse: collapse; font-size: 8.4pt; }
+  thead th { background: #0e2233; color: #fff; font-weight: 700; padding: 7px 6px; text-align: left; }
+  thead th.num { text-align: right; }
+  tbody td { border-bottom: 1px solid #edf0f2; padding: 5px 6px; vertical-align: top; }
+  tr.cat td { background: #eef3f8; font-weight: 800; color: #0e2233; padding: 6px; border-bottom: 1px solid #dbe4ec; }
+  td.num { text-align: right; white-space: nowrap; }
+  td.unit { color: #5f6b79; white-space: nowrap; }
+  .note { color: #5f6b79; font-size: 7.6pt; margin-top: 2px; }
+
+  .foot { margin-top: 14px; border-top: 1px solid #e3e6e8; padding-top: 10px; color: #5f6b79; font-size: 7.8pt; line-height: 1.45; }
+  .foot b { color: #1b1b1b; }
+  .contacts { display: flex; justify-content: space-between; margin-top: 8px; color: #0e2233; font-size: 8.4pt; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <div class="brand">FC<span>ampers</span></div>
+    <div class="doc">
+      <h1>Базовый прайс · 2026</h1>
+      <div class="sub">Базовые комплектации и опции · цены в рублях</div>
+    </div>
+  </div>
+
+  <p class="intro">Базовые комплектации серий 300, 400 и 500. Итоговая стоимость рассчитывается в конфигураторе
+  и зависит от выбранных опций. Цены указаны для базовой комплектации и не являются публичной офертой.</p>
+
+  <div class="cards">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-code">300</div>
+          <div class="card-title">Серия 300</div>
+          <div class="card-price">1 750 000 ₽</div>
+          <div class="card-sub">модуль 300 см</div>
+        </div>
+        <ul class="card-feats"><li>Модуль 300 см</li><li>2 боковых упора</li><li>1 боковое окно</li><li>Холодильник 50 л</li><li>Мебель в базовой комплектации</li></ul>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-code">400</div>
+          <div class="card-title">Серия 400</div>
+          <div class="card-price">1 950 000 ₽</div>
+          <div class="card-sub">модуль 400 см</div>
+        </div>
+        <ul class="card-feats"><li>Модуль 400 см</li><li>2 боковых упора</li><li>2 боковых окна</li><li>Холодильник 65 л</li><li>Мебель в базовой комплектации</li></ul>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-code">500</div>
+          <div class="card-title">Серия 500</div>
+          <div class="card-price">2 950 000 ₽</div>
+          <div class="card-sub">модуль 500 см</div>
+        </div>
+        <ul class="card-feats"><li>Модуль 500 см</li><li>4 боковых упора</li><li>2 боковых окна</li><li>Холодильник 65 л</li><li>Мебель в базовой комплектации</li></ul>
+      </div></div>
+
+  <h2>Опции</h2>
+  <table>
+    <thead>
+      <tr><th>Опция</th><th>Ед.</th><th class="num">Серия 300</th><th class="num">Серия 400</th><th class="num">Серия 500</th></tr>
+    </thead>
+    <tbody><tr class="cat"><td colspan="5">Внешнее оборудование</td></tr><tr><td class="opt">Толщина стены 50 мм</td><td class="unit">шт</td><td class="num">144 000 ₽</td><td class="num">144 000 ₽</td><td class="num">144 000 ₽</td></tr><tr><td class="opt">Изменение длины, шаг 200 мм</td><td class="unit">шаг</td><td class="num">35 000 ₽</td><td class="num">35 000 ₽</td><td class="num">35 000 ₽</td></tr><tr><td class="opt">Независимая подвеска на Ш-образных рычагах</td><td class="unit">компл</td><td class="num">244 000 ₽</td><td class="num">342 000 ₽</td><td class="num">640 000 ₽</td></tr><tr><td class="opt">Пневмоподвеска, 1 ось / 2 подушки</td><td class="unit">компл</td><td class="num">140 000 ₽</td><td class="num">140 000 ₽</td><td class="num">140 000 ₽</td></tr><tr><td class="opt">Пневмоподвеска, 2 оси / 4 подушки</td><td class="unit">компл</td><td class="num">226 500 ₽</td><td class="num">226 500 ₽</td><td class="num">226 500 ₽</td></tr><tr><td class="opt">Колёса R16C 195/70, штампованные диски<div class="note">для серии 300; для 400/500 — по запросу</div></td><td class="unit">компл</td><td class="num">32 000 ₽</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="opt">Американский квадрат сзади, РДПП шасси</td><td class="unit">шт</td><td class="num">38 000 ₽</td><td class="num">38 000 ₽</td><td class="num">38 000 ₽</td></tr><tr><td class="opt">Американский квадрат сзади, Ш-образные рычаги</td><td class="unit">шт</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td></tr><tr><td class="opt">Боковые упоры, +2 шт</td><td class="unit">шт</td><td class="num">22 000 ₽</td><td class="num">22 000 ₽</td><td class="num">22 000 ₽</td></tr><tr><td class="opt">Грузовой люк 600×320 мм</td><td class="unit">шт</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td></tr><tr><td class="opt">Ступень механическая</td><td class="unit">шт</td><td class="num">28 000 ₽</td><td class="num">28 000 ₽</td><td class="num">28 000 ₽</td></tr><tr><td class="opt">Кофр передний сэндвич для 2 угловых подвесок</td><td class="unit">шт</td><td class="num">48 000 ₽</td><td class="num">48 000 ₽</td><td class="num">48 000 ₽</td></tr><tr class="cat"><td colspan="5">Окна и люки</td></tr><tr><td class="opt">Лобовое окно 1100×500</td><td class="unit">шт</td><td class="num">62 000 ₽</td><td class="num">62 000 ₽</td><td class="num">62 000 ₽</td></tr><tr><td class="opt">Боковое / заднее окно 900×450</td><td class="unit">шт</td><td class="num">45 000 ₽</td><td class="num">45 000 ₽</td><td class="num">45 000 ₽</td></tr><tr><td class="opt">Заднее окно / окно СУ 500×350</td><td class="unit">шт</td><td class="num">35 000 ₽</td><td class="num">35 000 ₽</td><td class="num">35 000 ₽</td></tr><tr><td class="opt">Окно кухонной зоны 500×350</td><td class="unit">шт</td><td class="num">37 000 ₽</td><td class="num">37 000 ₽</td><td class="num">37 000 ₽</td></tr><tr><td class="opt">Люк 400×400 накрышный, подсветка, москитная сетка</td><td class="unit">шт</td><td class="num">26 000 ₽</td><td class="num">26 000 ₽</td><td class="num">26 000 ₽</td></tr><tr><td class="opt">Люк 700×500 накрышный, подсветка, москитная сетка</td><td class="unit">шт</td><td class="num">59 000 ₽</td><td class="num">59 000 ₽</td><td class="num">59 000 ₽</td></tr><tr><td class="opt">Дверь с окном и москитной сеткой</td><td class="unit">шт</td><td class="num">88 000 ₽</td><td class="num">88 000 ₽</td><td class="num">88 000 ₽</td></tr><tr><td class="opt">Москитная сетка сдвижная на дверь</td><td class="unit">шт</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td></tr><tr class="cat"><td colspan="5">Маркизы и кондиционеры</td></tr><tr><td class="opt">Маркиза кассетная, встроенные упоры<div class="note">500 — по запросу</div></td><td class="unit">шт</td><td class="num">156 000 ₽</td><td class="num">176 000 ₽</td><td class="num">—</td></tr><tr><td class="opt">Электропривод маркизы</td><td class="unit">шт</td><td class="num">60 000 ₽</td><td class="num">60 000 ₽</td><td class="num">60 000 ₽</td></tr><tr><td class="opt">Кондиционер накрышный 1,5 кВт, 12 В</td><td class="unit">шт</td><td class="num">68 000 ₽</td><td class="num">68 000 ₽</td><td class="num">68 000 ₽</td></tr><tr><td class="opt">Кондиционер инверторный накрышный 2,5 кВт, 12 В</td><td class="unit">шт</td><td class="num">84 000 ₽</td><td class="num">84 000 ₽</td><td class="num">84 000 ₽</td></tr><tr class="cat"><td colspan="5">Навесное оборудование</td></tr><tr><td class="opt">Столик уличный белый 800×450</td><td class="unit">шт</td><td class="num">30 800 ₽</td><td class="num">30 800 ₽</td><td class="num">30 800 ₽</td></tr><tr><td class="opt">Розетка газовая под быстросъём</td><td class="unit">шт</td><td class="num">22 000 ₽</td><td class="num">22 000 ₽</td><td class="num">22 000 ₽</td></tr><tr><td class="opt">Душ наружный</td><td class="unit">шт</td><td class="num">14 500 ₽</td><td class="num">14 500 ₽</td><td class="num">14 500 ₽</td></tr><tr><td class="opt">Велобагажник на 2 велосипеда</td><td class="unit">шт</td><td class="num">57 200 ₽</td><td class="num">57 200 ₽</td><td class="num">57 200 ₽</td></tr><tr><td class="opt">Ликпаз, 1 п.м</td><td class="unit">п.м</td><td class="num">7 000 ₽</td><td class="num">7 000 ₽</td><td class="num">7 000 ₽</td></tr><tr class="cat"><td colspan="5">Электрооборудование</td></tr><tr><td class="opt">Солнечная панель 440–500 Вт с контроллером</td><td class="unit">компл</td><td class="num">55 000 ₽</td><td class="num">55 000 ₽</td><td class="num">55 000 ₽</td></tr><tr><td class="opt">АКБ LiFePO4 280–310 Ач</td><td class="unit">шт</td><td class="num">78 000 ₽</td><td class="num">78 000 ₽</td><td class="num">78 000 ₽</td></tr><tr><td class="opt">АКБ LiFePO4 150 Ач</td><td class="unit">шт</td><td class="num">45 000 ₽</td><td class="num">45 000 ₽</td><td class="num">45 000 ₽</td></tr><tr><td class="opt">Внешняя розетка 220 В + 12 В + USB</td><td class="unit">шт</td><td class="num">9 200 ₽</td><td class="num">9 200 ₽</td><td class="num">9 200 ₽</td></tr><tr><td class="opt">Задняя камера</td><td class="unit">шт</td><td class="num">32 000 ₽</td><td class="num">32 000 ₽</td><td class="num">32 000 ₽</td></tr><tr><td class="opt">Внешняя газовая розетка</td><td class="unit">шт</td><td class="num">7 500 ₽</td><td class="num">7 500 ₽</td><td class="num">7 500 ₽</td></tr><tr><td class="opt">Инвертор 1000 Вт (номинал 500 Вт)</td><td class="unit">шт</td><td class="num">19 000 ₽</td><td class="num">19 000 ₽</td><td class="num">19 000 ₽</td></tr><tr><td class="opt">Инвертор 3000 Вт (номинал 1500 Вт)</td><td class="unit">шт</td><td class="num">26 000 ₽</td><td class="num">26 000 ₽</td><td class="num">26 000 ₽</td></tr><tr><td class="opt">Инвертор 6000 Вт (номинал 3000 Вт)</td><td class="unit">шт</td><td class="num">37 000 ₽</td><td class="num">37 000 ₽</td><td class="num">37 000 ₽</td></tr><tr class="cat"><td colspan="5">Кухонная зона</td></tr><tr><td class="opt">Газовая конфорка, 1 шт</td><td class="unit">шт</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td></tr><tr><td class="opt">Индукционная конфорка, 1 шт</td><td class="unit">шт</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td></tr><tr><td class="opt">Две газовые конфорки</td><td class="unit">компл</td><td class="num">32 000 ₽</td><td class="num">32 000 ₽</td><td class="num">32 000 ₽</td></tr><tr><td class="opt">Раковина с крышкой</td><td class="unit">шт</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td><td class="num">24 000 ₽</td></tr><tr><td class="opt">Вытяжка кухонная</td><td class="unit">шт</td><td class="num">24 200 ₽</td><td class="num">24 200 ₽</td><td class="num">24 200 ₽</td></tr><tr><td class="opt">СВЧ-печь</td><td class="unit">шт</td><td class="num">25 000 ₽</td><td class="num">25 000 ₽</td><td class="num">25 000 ₽</td></tr><tr><td class="opt">Стиральная машина</td><td class="unit">шт</td><td class="num">55 000 ₽</td><td class="num">55 000 ₽</td><td class="num">55 000 ₽</td></tr><tr><td class="opt">Посудомоечная машина</td><td class="unit">шт</td><td class="num">45 000 ₽</td><td class="num">45 000 ₽</td><td class="num">45 000 ₽</td></tr><tr class="cat"><td colspan="5">Отопление, вода, газ</td></tr><tr><td class="opt">Комби-отопитель дизель + 220 В (отопление + бойлер)</td><td class="unit">компл</td><td class="num">228 000 ₽</td><td class="num">228 000 ₽</td><td class="num">228 000 ₽</td></tr><tr><td class="opt">Бак дизель 22 л с датчиком</td><td class="unit">шт</td><td class="num">38 000 ₽</td><td class="num">38 000 ₽</td><td class="num">38 000 ₽</td></tr><tr><td class="opt">Чехол для насоса отопителя (тихий)</td><td class="unit">шт</td><td class="num">5 600 ₽</td><td class="num">5 600 ₽</td><td class="num">5 600 ₽</td></tr><tr><td class="opt">Насос 18,2 л/мин для забора воды снаружи</td><td class="unit">шт</td><td class="num">28 000 ₽</td><td class="num">28 000 ₽</td><td class="num">28 000 ₽</td></tr><tr><td class="opt">Гидроаккумулятор 3 л</td><td class="unit">шт</td><td class="num">16 000 ₽</td><td class="num">16 000 ₽</td><td class="num">16 000 ₽</td></tr><tr><td class="opt">Датчик уровня воды в баке</td><td class="unit">шт</td><td class="num">15 000 ₽</td><td class="num">15 000 ₽</td><td class="num">15 000 ₽</td></tr><tr><td class="opt">Баллон композит 12 л</td><td class="unit">шт</td><td class="num">16 000 ₽</td><td class="num">16 000 ₽</td><td class="num">16 000 ₽</td></tr><tr><td class="opt">Крепление баллона<div class="note">цена по запросу</div></td><td class="unit">шт</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr class="cat"><td colspan="5">Санузел</td></tr><tr><td class="opt">Раковина откидная</td><td class="unit">шт</td><td class="num">36 000 ₽</td><td class="num">36 000 ₽</td><td class="num">36 000 ₽</td></tr><tr><td class="opt">Раковина треугольная угловая</td><td class="unit">шт</td><td class="num">36 000 ₽</td><td class="num">36 000 ₽</td><td class="num">36 000 ₽</td></tr><tr><td class="opt">Шкафчик на стену, пластик</td><td class="unit">шт</td><td class="num">12 000 ₽</td><td class="num">12 000 ₽</td><td class="num">12 000 ₽</td></tr><tr><td class="opt">Раковина базовая прямоугольная</td><td class="unit">шт</td><td class="num">18 000 ₽</td><td class="num">18 000 ₽</td><td class="num">18 000 ₽</td></tr><tr><td class="opt">Унитаз кассетный</td><td class="unit">шт</td><td class="num">68 000 ₽</td><td class="num">68 000 ₽</td><td class="num">68 000 ₽</td></tr><tr><td class="opt">Унитаз портативный</td><td class="unit">шт</td><td class="num">22 000 ₽</td><td class="num">22 000 ₽</td><td class="num">22 000 ₽</td></tr><tr class="cat"><td colspan="5">Свет, розетки, ТВ, интернет</td></tr><tr><td class="opt">Точечный светильник</td><td class="unit">шт</td><td class="num">3 500 ₽</td><td class="num">3 500 ₽</td><td class="num">3 500 ₽</td></tr><tr><td class="opt">Лампа диодная круглая</td><td class="unit">шт</td><td class="num">1 800 ₽</td><td class="num">1 800 ₽</td><td class="num">1 800 ₽</td></tr><tr><td class="opt">Розетка 220 В</td><td class="unit">шт</td><td class="num">1 800 ₽</td><td class="num">1 800 ₽</td><td class="num">1 800 ₽</td></tr><tr><td class="opt">Розетка USB</td><td class="unit">шт</td><td class="num">1 500 ₽</td><td class="num">1 500 ₽</td><td class="num">1 500 ₽</td></tr><tr><td class="opt">Розетка 12 В</td><td class="unit">шт</td><td class="num">1 500 ₽</td><td class="num">1 500 ₽</td><td class="num">1 500 ₽</td></tr><tr><td class="opt">ТВ 24 дюйма, 12 В</td><td class="unit">шт</td><td class="num">32 000 ₽</td><td class="num">32 000 ₽</td><td class="num">32 000 ₽</td></tr><tr><td class="opt">Крепление ТВ</td><td class="unit">шт</td><td class="num">12 000 ₽</td><td class="num">12 000 ₽</td><td class="num">12 000 ₽</td></tr><tr><td class="opt">Роутер Wi-Fi 12 В</td><td class="unit">шт</td><td class="num">6 500 ₽</td><td class="num">6 500 ₽</td><td class="num">6 500 ₽</td></tr><tr class="cat"><td colspan="5">Напольное покрытие и шторки</td></tr><tr><td class="opt">Ева</td><td class="unit">компл</td><td class="num">16 000 ₽</td><td class="num">16 000 ₽</td><td class="num">16 000 ₽</td></tr><tr><td class="opt">Кварцвинил</td><td class="unit">компл</td><td class="num">56 000 ₽</td><td class="num">56 000 ₽</td><td class="num">56 000 ₽</td></tr><tr><td class="opt">Линолеум</td><td class="unit">компл</td><td class="num">36 000 ₽</td><td class="num">36 000 ₽</td><td class="num">36 000 ₽</td></tr><tr><td class="opt">Шторка столовая группа</td><td class="unit">шт</td><td class="num">14 000 ₽</td><td class="num">14 000 ₽</td><td class="num">14 000 ₽</td></tr><tr><td class="opt">Шторка детская зона</td><td class="unit">шт</td><td class="num">14 000 ₽</td><td class="num">14 000 ₽</td><td class="num">14 000 ₽</td></tr></tbody>
+  </table>
+
+  <div class="foot">
+    <b>ООО «Семейные кемперы»</b> · ИНН 5024254758 · КПП 502401001 · ОГРН 1255000067574<br>
+    Московская обл., г. Красногорск, Оптический пр., 8А · Пн–Пт 9:00–18:00<br>
+    Цены действительны на дату публикации и не являются публичной офертой. Состав комплектации уточняйте у менеджера.
+    <div class="contacts"><span>+7 (499) 638-24-05</span><span>familycampers@ya.ru</span><span>familycampers.ru</span></div>
+  </div>
+</body>
+</html>
