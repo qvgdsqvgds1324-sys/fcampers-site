@@ -16,7 +16,7 @@
   --color-base-300: #e3e6e8;
   --color-base-content: #1b1b1b;
 
-  --color-primary: #0078d7;
+  --color-primary: #0063b1;
   --color-primary-content: #ffffff;
   --color-secondary: #0e2233;
   --color-secondary-content: #ffffff;
@@ -24,7 +24,7 @@
   --color-accent-content: #ffffff;
   --color-neutral: #0e2233;
   --color-neutral-content: #ffffff;
-  --color-info: #0078d7;
+  --color-info: #0063b1;
   --color-success: #2f7d5b;
   --color-warning: #b7791f;
   --color-error: #c53030;
@@ -66,7 +66,7 @@
   --color-navy-2: #12344d;
   --color-sand: #f5f7f9;
   --color-ink: #1b1b1b;
-  --color-muted: #6b7785;
+  --color-muted: #5f6b79;
 }
 
 html {
@@ -169,6 +169,10 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   color: var(--color-primary);
+}
+
+.eyebrow.text-white\/60 {
+  color: #cfe4f5;
 }
 
 /* hero */
