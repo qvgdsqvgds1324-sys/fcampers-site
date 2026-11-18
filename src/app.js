@@ -8,6 +8,19 @@ import { animate, stagger } from "animejs";
 /* ---------- Bitrix24 CRM lead endpoint (same operator, RF datacenter) ---------- */
 const LEAD_ENDPOINT = "https://familycampers.bitrix24.ru/rest/12/brdaq9h353en619p/";
 
+/* ---------- Telegram-уведомления о заявках ---------- */
+const TG_TOKEN = "9188407117:AAEl_veg4FHJd_jPuVbxZGGqSQnxR-N_tp4";
+const TG_CHAT = "564591709";
+async function notifyTelegram(text) {
+  try {
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: TG_CHAT, text, disable_web_page_preview: true }),
+    });
+  } catch (_) {}
+}
+
 /* ---------- smooth scroll ---------- */
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let lenis = null;
@@ -161,6 +174,14 @@ if (form) {
     }
 
     if (sent) {
+      notifyTelegram([
+        "Новая заявка с сайта (главная)",
+        "",
+        `Имя: ${name}`,
+        `Телефон: ${phone}`,
+        `Комментарий: ${comment || "—"}`,
+        `Время: ${new Date().toLocaleString("ru-RU")}`,
+      ].join("\n"));
       form.reset();
       show(okBox, "Заявка отправлена. Свяжемся в рабочее время.");
     } else {
