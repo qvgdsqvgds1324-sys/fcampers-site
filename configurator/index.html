@@ -433,15 +433,17 @@ const LEAD_ENDPOINT = "https://familycampers.bitrix24.ru/rest/12/brdaq9h353en619
 
 /* ---------- Telegram-уведомления о заявках ---------- */
 const TG_TOKEN = "9188407117:AAEl_veg4FHJd_jPuVbxZGGqSQnxR-N_tp4";
-const TG_CHAT = "564591709";
+const TG_CHATS = ["564591709", "600999403"];
 async function notifyTelegram(text) {
-  try {
-    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: TG_CHAT, text, disable_web_page_preview: true }),
-    });
-  } catch (_) {}
+  for (const chat of TG_CHATS) {
+    try {
+      await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chat, text, disable_web_page_preview: true }),
+      });
+    } catch (_) {}
+  }
 }
 const fmt = n => Number(n).toLocaleString("ru-RU") + " ₽";
 const byId = id => document.getElementById(id);
