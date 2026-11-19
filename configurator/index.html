@@ -715,7 +715,6 @@ byId("leadForm").addEventListener("submit", async e => {
       `Время: ${new Date().toLocaleString("ru-RU")}`,
     ].filter(Boolean).join("\n"),
   };
-  let sent = false;
   try {
     const res = await fetch(API_ENDPOINT, {
       method: "POST",
