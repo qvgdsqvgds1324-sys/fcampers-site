@@ -1,15 +1,6 @@
 [
   {
-    "num": "01 / 04",
-    "name": "FC 430",
-    "status": "Комиссионный",
-    "price": "2 399 000 ₽",
-    "href": "https://familycampers.ru/fc430/",
-    "img": "assets/img/stock/stock-1.webp",
-    "alt": "FC 430 Комиссионный"
-  },
-  {
-    "num": "02 / 04",
+    "num": "01 / 02",
     "name": "FC 360",
     "status": "Комиссионный",
     "price": "2 199 000 ₽",
@@ -18,21 +9,12 @@
     "alt": "FC 360 Комиссионный"
   },
   {
-    "num": "03 / 04",
+    "num": "02 / 02",
     "name": "FC 360",
     "status": "Комиссионный",
     "price": "2 100 000 ₽",
     "href": "https://familycampers.ru/fc360-komission/",
     "img": "assets/img/stock/stock-3.webp",
     "alt": "FC 360 Комиссионный"
-  },
-  {
-    "num": "04 / 04",
-    "name": "FC 360",
-    "status": "Финальная стадия сборки",
-    "price": "1 859 000 ₽",
-    "href": "https://familycampers.ru/fc360-new/",
-    "img": "assets/img/stock/stock-4.webp",
-    "alt": "FC 360 Финальная стадия сборки"
   }
 ]
