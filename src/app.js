@@ -6,22 +6,7 @@ import { Navigation, Pagination, A11y, Keyboard } from "swiper/modules";
 import { animate, stagger } from "animejs";
 
 /* ---------- Bitrix24 CRM lead endpoint (same operator, RF datacenter) ---------- */
-const LEAD_ENDPOINT = "https://familycampers.bitrix24.ru/rest/12/brdaq9h353en619p/";
-
-/* ---------- Telegram-уведомления о заявках ---------- */
-const TG_TOKEN = "9188407117:AAEl_veg4FHJd_jPuVbxZGGqSQnxR-N_tp4";
-const TG_CHATS = ["564591709", "600999403"];
-async function notifyTelegram(text) {
-  for (const chat of TG_CHATS) {
-    try {
-      await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chat, text, disable_web_page_preview: true }),
-      });
-    } catch (_) {}
-  }
-}
+const API_ENDPOINT = "https://api.familycampers.ru/lead.php";
 
 /* ---------- smooth scroll ---------- */
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -136,6 +121,7 @@ if (form) {
     if (btn) { btn.disabled = true; btn.textContent = "Отправляем…"; }
 
     const payload = {
+      type: "lead",
       fields: {
         TITLE: "Заявка с сайта (главная)",
         NAME: name,
@@ -144,46 +130,32 @@ if (form) {
         SOURCE_DESCRIPTION: "Сайт fcampers — главная страница",
         EMAIL: [{ VALUE: "familycampers@ya.ru", VALUE_TYPE: "WORK" }],
       },
-    };
-
-    let sent = false;
-    try {
-      const res = await fetch(LEAD_ENDPOINT + "crm.lead.add.json", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json().catch(() => ({}));
-      sent = res.ok && data && data.result > 0;
-    } catch (err) {
-      try {
-        const body = new URLSearchParams();
-        body.append("fields[TITLE]", payload.fields.TITLE);
-        body.append("fields[NAME]", payload.fields.NAME);
-        body.append("fields[PHONE][0][VALUE]", phone);
-        body.append("fields[PHONE][0][VALUE_TYPE]", "WORK");
-        body.append("fields[COMMENTS]", payload.fields.COMMENTS);
-        body.append("fields[EMAIL][0][VALUE]", "familycampers@ya.ru");
-        body.append("fields[EMAIL][0][VALUE_TYPE]", "WORK");
-        body.append("fields[SOURCE_DESCRIPTION]", payload.fields.SOURCE_DESCRIPTION);
-        await fetch(LEAD_ENDPOINT + "crm.lead.add.json", { method: "POST", mode: "no-cors", body });
-        sent = true;
-      } catch (err2) {
-        sent = false;
-      }
-    } finally {
-      if (btn) { btn.disabled = false; btn.textContent = prev; }
-    }
-
-    if (sent) {
-      notifyTelegram([
+      tg_text: [
         "Новая заявка с сайта (главная)",
         "",
         `Имя: ${name}`,
         `Телефон: ${phone}`,
         `Комментарий: ${comment || "—"}`,
         `Время: ${new Date().toLocaleString("ru-RU")}`,
-      ].join("\n"));
+      ].join("\n"),
+    };
+
+    let sent = false;
+    try {
+      const res = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      sent = res.ok && data && data.ok === true;
+    } catch (err) {
+      sent = false;
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = prev; }
+    }
+
+    if (sent) {
       form.reset();
       show(okBox, "Заявка отправлена. Свяжемся в рабочее время.");
     } else {

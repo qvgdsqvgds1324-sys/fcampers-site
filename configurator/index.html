@@ -429,22 +429,7 @@ const STORE_KEY = "fcampers-config-v1";
    Вебхук создан с правом только "CRM (crm)". Ключ публичный — от спама защищают
    honeypot-поле и проверка телефона; при злоупотреблении вебхук можно
    перегенерировать в Bitrix24 и обновить здесь. */
-const LEAD_ENDPOINT = "https://familycampers.bitrix24.ru/rest/12/brdaq9h353en619p/";
-
-/* ---------- Telegram-уведомления о заявках ---------- */
-const TG_TOKEN = "9188407117:AAEl_veg4FHJd_jPuVbxZGGqSQnxR-N_tp4";
-const TG_CHATS = ["564591709", "600999403"];
-async function notifyTelegram(text) {
-  for (const chat of TG_CHATS) {
-    try {
-      await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chat, text, disable_web_page_preview: true }),
-      });
-    } catch (_) {}
-  }
-}
+const API_ENDPOINT = "https://api.familycampers.ru/lead.php";
 const fmt = n => Number(n).toLocaleString("ru-RU") + " ₽";
 const byId = id => document.getElementById(id);
 const optById = {};
@@ -708,37 +693,16 @@ byId("leadForm").addEventListener("submit", async e => {
     `Страница: ${location.href}`,
   ].filter(Boolean).join("\n");
   const leadPayload = {
-    TITLE: `Заявка с конфигуратора: серия ${s.code}`,
-    NAME: state.client.name,
-    PHONE: [{ VALUE: state.client.phone, VALUE_TYPE: "WORK" }],
-    COMMENTS: comments,
-    SOURCE_DESCRIPTION: "Конфигуратор каравана",
-    STATUS_ID: "NEW",
-  };
-  // Bitrix REST: сначала JSON, при CORS-ошибке — form-urlencoded без чтения ответа.
-  try {
-    const res = await fetch(LEAD_ENDPOINT + "crm.lead.add.json", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ fields: leadPayload, params: { REGISTER_SONET_EVENT: "Y" } })
-    });
-    const data = await res.json().catch(() => ({}));
-    sent = res.ok && data && data.result > 0;
-  } catch (err) {
-    try {
-      const body = new URLSearchParams();
-      body.append("fields[TITLE]", leadPayload.TITLE);
-      body.append("fields[NAME]", leadPayload.NAME);
-      body.append("fields[PHONE][0][VALUE]", state.client.phone);
-      body.append("fields[PHONE][0][VALUE_TYPE]", "WORK");
-      body.append("fields[COMMENTS]", comments);
-      body.append("fields[SOURCE_DESCRIPTION]", "Конфигуратор каравана");
-      await fetch(LEAD_ENDPOINT + "crm.lead.add.json", { method: "POST", mode: "no-cors", body });
-      sent = true;
-    } catch (err2) { sent = false; }
-  }
-  if (sent) {
-    notifyTelegram([
+    type: "lead",
+    fields: {
+      TITLE: `Заявка с конфигуратора: серия ${s.code}`,
+      NAME: state.client.name,
+      PHONE: [{ VALUE: state.client.phone, VALUE_TYPE: "WORK" }],
+      COMMENTS: comments,
+      SOURCE_DESCRIPTION: "Конфигуратор каравана",
+      STATUS_ID: "NEW",
+    },
+    tg_text: [
       "Новая заявка с конфигуратора",
       "",
       `Серия: ${s.code} (модуль ${s.module} см)`,
@@ -749,7 +713,19 @@ byId("leadForm").addEventListener("submit", async e => {
       "",
       ...lines,
       `Время: ${new Date().toLocaleString("ru-RU")}`,
-    ].filter(Boolean).join("\n"));
+    ].filter(Boolean).join("\n"),
+  };
+  let sent = false;
+  try {
+    const res = await fetch(API_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(leadPayload),
+    });
+    const data = await res.json().catch(() => ({}));
+    sent = res.ok && data && data.ok === true;
+  } catch (err) {
+    sent = false;
   }
   leadSending = false;
   btn.disabled = false;
