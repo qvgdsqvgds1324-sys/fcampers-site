@@ -294,6 +294,19 @@ button{font:inherit;cursor:pointer}
 }
 .fc-embed .site-head,.fc-embed .mbar{display:none!important}
 </style>
+<!-- Yandex.Metrika counter -->
+<script>
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+    k = e.createElement(t); a = e.getElementsByTagName(t)[0]; k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  ym(104832460, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/104832460" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<script src="../assets/js/track.js" defer></script>
 </head>
 <body>
 <header class="site-head">
@@ -692,6 +705,7 @@ byId("leadForm").addEventListener("submit", async e => {
     state.client.comment ? `Комментарий клиента: ${state.client.comment}` : "",
     `Страница: ${location.href}`,
   ].filter(Boolean).join("\n");
+  const utm = (window.fcUtm && window.fcUtm()) || {};
   const leadPayload = {
     type: "lead",
     fields: {
@@ -699,7 +713,13 @@ byId("leadForm").addEventListener("submit", async e => {
       NAME: state.client.name,
       PHONE: [{ VALUE: state.client.phone, VALUE_TYPE: "WORK" }],
       COMMENTS: comments,
-      SOURCE_DESCRIPTION: "Конфигуратор каравана",
+      SOURCE_DESCRIPTION: "Конфигуратор каравана" + (utm.LANDING ? " | " + utm.LANDING : ""),
+      SOURCE_ID: "WEB",
+      UTM_SOURCE: utm.UTM_SOURCE || "",
+      UTM_MEDIUM: utm.UTM_MEDIUM || "",
+      UTM_CAMPAIGN: utm.UTM_CAMPAIGN || "",
+      UTM_CONTENT: utm.UTM_CONTENT || "",
+      UTM_TERM: utm.UTM_TERM || "",
       STATUS_ID: "NEW",
     },
     tg_text: [
@@ -729,6 +749,7 @@ byId("leadForm").addEventListener("submit", async e => {
   leadSending = false;
   btn.disabled = false;
   btn.textContent = prevLabel;
+  if (sent && window.fcGoal) window.fcGoal("form_lead_configurator");
   byId("okTitle").textContent = sent ? "Заявка отправлена" : "Заявка сформирована";
   byId("okNote").textContent = sent
     ? "Мы получили заявку и свяжемся в рабочее время. Можно также скачать коммерческое предложение."

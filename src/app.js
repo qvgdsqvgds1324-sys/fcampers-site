@@ -120,6 +120,10 @@ if (form) {
     const prev = btn ? btn.textContent : "";
     if (btn) { btn.disabled = true; btn.textContent = "Отправляем…"; }
 
+    const utm = (window.fcUtm && window.fcUtm()) || {};
+    const src = ["Сайт fcampers — главная", utm.LANDING ? "страница: " + utm.LANDING : ""]
+      .filter(Boolean).join(" | ");
+
     const payload = {
       type: "lead",
       fields: {
@@ -127,7 +131,13 @@ if (form) {
         NAME: name,
         PHONE: [{ VALUE: phone, VALUE_TYPE: "WORK" }],
         COMMENTS: comment || "—",
-        SOURCE_DESCRIPTION: "Сайт fcampers — главная страница",
+        SOURCE_ID: "WEB",
+        SOURCE_DESCRIPTION: src.slice(0, 255),
+        UTM_SOURCE: utm.UTM_SOURCE || "",
+        UTM_MEDIUM: utm.UTM_MEDIUM || "",
+        UTM_CAMPAIGN: utm.UTM_CAMPAIGN || "",
+        UTM_CONTENT: utm.UTM_CONTENT || "",
+        UTM_TERM: utm.UTM_TERM || "",
         EMAIL: [{ VALUE: "familycampers@ya.ru", VALUE_TYPE: "WORK" }],
       },
       tg_text: [
@@ -156,6 +166,7 @@ if (form) {
     }
 
     if (sent) {
+      if (window.fcGoal) window.fcGoal("form_lead_main");
       form.reset();
       show(okBox, "Заявка отправлена. Свяжемся в рабочее время.");
     } else {
