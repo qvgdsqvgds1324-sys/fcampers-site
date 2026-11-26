@@ -735,16 +735,19 @@ byId("leadForm").addEventListener("submit", async e => {
       `Время: ${new Date().toLocaleString("ru-RU")}`,
     ].filter(Boolean).join("\n"),
   };
-  try {
-    const res = await fetch(API_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(leadPayload),
-    });
-    const data = await res.json().catch(() => ({}));
-    sent = res.ok && data && data.ok === true;
-  } catch (err) {
-    sent = false;
+  for (let attempt = 0; attempt < 2 && !sent; attempt++) {
+    try {
+      const res = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(leadPayload),
+      });
+      const data = await res.json().catch(() => ({}));
+      sent = res.ok && data && data.ok === true;
+    } catch (err) {
+      sent = false;
+    }
+    if (!sent && attempt === 0) await new Promise((r) => setTimeout(r, 2500));
   }
   leadSending = false;
   btn.disabled = false;

@@ -151,26 +151,31 @@ if (form) {
     };
 
     let sent = false;
-    try {
-      const res = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json().catch(() => ({}));
-      sent = res.ok && data && data.ok === true;
-    } catch (err) {
-      sent = false;
-    } finally {
-      if (btn) { btn.disabled = false; btn.textContent = prev; }
+    for (let attempt = 0; attempt < 2 && !sent; attempt++) {
+      try {
+        const res = await fetch(API_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        sent = res.ok && data && data.ok === true;
+      } catch (err) {
+        sent = false;
+      }
+      if (!sent && attempt === 0) {
+        await new Promise((r) => setTimeout(r, 2500));
+      }
     }
+    if (btn) { btn.disabled = false; btn.textContent = prev; }
 
     if (sent) {
       if (window.fcGoal) window.fcGoal("form_lead_main");
       form.reset();
       show(okBox, "Заявка отправлена. Свяжемся в рабочее время.");
     } else {
-      show(errBox, "Не удалось отправить. Позвоните: +7 (499) 638-24-05.");
+      errBox.innerHTML =
+        'Не удалось отправить заявку. Позвоните: <a class="link link-primary" href="tel:+74996382405">+7 (499) 638-24-05</a> или <a class="link link-primary" href="https://wa.me/74996382405" target="_blank" rel="noopener">напишите в WhatsApp</a>.';
     }
   });
 }
