@@ -1,6 +1,6 @@
 [
   {
-    "num": "01 / 02",
+    "num": "01 / 03",
     "name": "FC 360",
     "status": "Комиссионный",
     "price": "2 199 000 ₽",
@@ -9,12 +9,21 @@
     "alt": "FC 360 Комиссионный"
   },
   {
-    "num": "02 / 02",
+    "num": "02 / 03",
     "name": "FC 360",
     "status": "Комиссионный",
     "price": "2 100 000 ₽",
     "href": "https://familycampers.ru/fc360-komission/",
     "img": "assets/img/stock/stock-3.webp",
     "alt": "FC 360 Комиссионный"
+  },
+  {
+    "num": "03 / 03",
+    "name": "FC 360",
+    "status": "Новый",
+    "price": "1 900 000 ₽",
+    "href": "https://familycampers.ru/nalichie/fc360-300ah/",
+    "img": "assets/img/stock/fc360-300ah-1.webp",
+    "alt": "FC 360 — новый, в наличии"
   }
 ]
